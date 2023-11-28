@@ -3,6 +3,8 @@ languageCode: 'en-us'
 title: 'o10s'
 theme: 'PaperMod'
 
+sectionPagesMenu: main
+
 params:
   defaultTheme: dark
   disableThemeToggle: false
@@ -12,7 +14,7 @@ params:
     title: "Welcome to my website 😀"
     Content: |
       This is my simple place on the big internet so I can share what I do.
-      
+
       What I do is mostly composed of Kubernetes and Selfhosting but here and there you might find some
       food recipes and other stuff that I like.
   
@@ -22,3 +24,8 @@ params:
     - name: "email"
       url: "mailto:contact@o10s.ch"
 
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
