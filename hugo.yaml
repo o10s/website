@@ -27,6 +27,12 @@ params:
       url: "https://github.com/o10s"
     - name: "email"
       url: "mailto:contact@o10s.ch"
+  assets:
+    favicon: "/images/favico/favicon.ico"
+    favicon16x16:  "/images/favico/favicon-16x16.png"
+    favicon32x32:  "/images/favico/favicon-32x32.png"
+    apple_touch_icon:  "/images/favico/apple-touch-icon.png"
+    safari_pinned_tab:  "/images/favico/safari-pinned-tab.svg"
 
 outputs:
   home:
