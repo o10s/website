@@ -1,4 +1,24 @@
-baseURL: 'https://example.org/'
+baseURL: 'https://blog.o10s.ch/'
 languageCode: 'en-us'
-title: 'My New Hugo Site'
-theme: "PaperMod"
+title: 'o10s'
+theme: 'PaperMod'
+
+params:
+  defaultTheme: dark
+  disableThemeToggle: false
+  enableEmoji: true
+
+  homeInfoParams:
+    title: "Welcome to my website 😀"
+    Content: |
+      This is my simple place on the big internet so I can share what I do.
+      
+      What I do is mostly composed of Kubernetes and Selfhosting but here and there you might find some
+      food recipes and other stuff that I like.
+  
+  socialIcons:
+    - name: "github"
+      url: "https://github.com/o10s"
+    - name: "email"
+      url: "mailto:contact@o10s.ch"
+
