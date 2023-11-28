@@ -1,0 +1,12 @@
+/* static/css/style.css */
+.experience-block {
+    display: flex;
+    align-items: start;
+    margin-bottom: 20px;
+}
+
+.experience-logo {
+    width: 50px; /* Adjust as needed */
+    height: 50px; /* Adjust as needed */
+    margin-right: 15px;
+}
