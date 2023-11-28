@@ -6,6 +6,8 @@ tags:
 - CERN
 - UNIL
 - Intel
+categories:
+- About Me
 cover:
   image: "images/pages/cv.png"
   alt: "The cover image for the cv"
