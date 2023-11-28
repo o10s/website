@@ -1,7 +1,11 @@
 ---
 title: "Curriculum Vitae"
 menu: main
-draft: true
+draft: false
+tags: 
+- CERN
+- UNIL
+- Intel
 cover:
   image: "images/pages/cv.png"
   alt: "The cover image for the cv"
