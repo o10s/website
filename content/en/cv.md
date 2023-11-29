@@ -38,7 +38,7 @@ For professional inquiries, please email: [contact@o10s.ch](mailto:contact@o10s.
 ### Software Engineer  
 **Company:** [Tradition](https://www.tradition.com/)  
 **Dates:** July 2017 - July 2019  
-**Location:** 🇨🇭 [Lausanne](https://maps.app.goo.gl/Bw3NZboC4KjVQL7N7)   
+**Location:** 🇨🇭 [hereLausanne](https://maps.app.goo.gl/Bw3NZboC4KjVQL7N7)   
 - **Responsibilities:**
   1. Full-stack development of Tradition's internal application, implementing end-to-end solutions to enhance business processes and user experience.
   2. Provided comprehensive user support across Asia, America, and Europe, ensuring seamless operation and high levels of satisfaction for global offices.
