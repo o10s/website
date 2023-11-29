@@ -1,12 +1,14 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-      var userLang = navigator.language || navigator.userLanguage; 
+      var path = window.location.pathname;
   
-      // Redirect based on user's language
-      if(userLang.startsWith("fr")) {
+      // Check if the URL contains language-specific segments
+      if (path.includes("/fr/")) {
         window.location.href = '/fr/404.html';
+      } else if (path.includes("/en/")) {
+        window.location.href = '/en/404.html';
       } else {
-        // Default to English or add more conditions for other languages
+        // Default to English
         window.location.href = '/en/404.html';
       }
     });
