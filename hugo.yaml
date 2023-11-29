@@ -17,11 +17,9 @@ params:
   author:
     - o10s
   homeInfoParams:
-    title: "🏡 Welcome to my website 🐋"
+    title: "🏡 Tech & Tastes: Selfhosting and More 🍣"
     Content: |
-      This is my simple place on the big internet so I can share what I do.  
-      What I do is mostly composed of Kubernetes and Selfhosting but here and there you might find some
-      food recipes and other stuff that I like.
+      Welcome to my personal space where I share my passions and projects.  
   socialIcons:
     - name: "github"
       url: "https://github.com/o10s"
