@@ -1,7 +1,36 @@
 baseURL: 'https://blog.o10s.ch/'
-languageCode: 'en-us'
 title: 'o10s'
 theme: 'PaperMod'
+
+defaultcontentLanguage: en
+defaultContentLanguageInSubdir: true
+languages:
+  fr:
+    contentDir: content/fr
+    disabled: false
+    languageCode: fr-FR
+    languageDirection: ltr
+    languageName: French
+    title: o10s
+    params:
+      homeInfoParams:
+        title: "🏡 Arômes de la Tech: Autohébergement et Plus 🍣"
+        Content: |
+          Bienvenue dans mon espace personnel où je partage mes passions et projets.
+    weight: 1
+  en:
+    contentDir: content/en
+    disabled: false
+    languageCode: en-US
+    languageDirection: ltr
+    languageName: English
+    title: o10s
+    params:
+      homeInfoParams:
+        title: "🏡 Tech & Tastes: Selfhosting and More 🍣"
+        Content: |
+          Welcome to my personal space where I share my passions and projects.
+    weight: 2
 
 sectionPagesMenu: main
 
