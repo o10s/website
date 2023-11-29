@@ -14,7 +14,7 @@ languages:
     title: o10s
     params:
       homeInfoParams:
-        title: "🏡 Arômes de la Tech: Autohébergement et Plus 🍣"
+        title: "🏡 Arômes Tech: Autohébergement et Plus 🍣"
         Content: |
           Bienvenue dans mon espace personnel où je partage mes passions et projets.
     weight: 1
@@ -27,7 +27,7 @@ languages:
     title: o10s
     params:
       homeInfoParams:
-        title: "🏡 Tech & Tastes: Selfhosting and More 🍣"
+        title: "🏡 Tech Tastes: Selfhosting and More 🍣"
         Content: |
           Welcome to my personal space where I share my passions and projects.
     weight: 2
