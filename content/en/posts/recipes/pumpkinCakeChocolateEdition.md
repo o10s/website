@@ -1,5 +1,5 @@
 ---
-title: The Pumkin Cake (Vanilla Edition)
+title: The Pumkin Cake (Chocolate Edition)
 date: 2023-11-29T08:30:30+01:00
 draft: false
 tags: 
@@ -10,7 +10,7 @@ tags:
 categories: 
 - Food
 cover:
-  image: "images/posts/recipes/pumkinVanillaCake.png"
+  image: "images/posts/recipes/pumpkinCakeChocolateEdition.png"
   alt: "The cover image for the post"
   relative: false 
 ---
@@ -18,8 +18,7 @@ cover:
 **o10s' Rating:** ⭐⭐⭐⭐⭐
 
 ## Macros:
-**Calories:** 973kCal - **Carbs:** 117.4g | **Fat:** 13.4g | **Protein:** 81g
-
+**Calories:** 984kCal - **Carbs:** 112.5g | **Fat:** 19.6g | **Protein:** 84.5g
 
 ## Ingredients:
 
@@ -29,13 +28,13 @@ cover:
 - 7g of dry yeast
 - 15g of baking powder 
 - 1g of salt
-- 50g of vanilla whey protein  
+- 50g of chocolate whey protein
+- 30g of 100% cacao powder  
 
 **Wet:**
 - 2 eggs
-- 1 banana
+- 1 banana (mashed into a puree)
 - 85g of Skyr
-- 40ml of liquid vanilla extract
 - 250g of pumpkin puree 
 
 ## Directions: 
