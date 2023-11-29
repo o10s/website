@@ -7,7 +7,6 @@ defaultContentLanguageInSubdir: true
 languages:
   fr:
     contentDir: content/fr
-    disabled: false
     languageCode: fr-FR
     languageDirection: ltr
     languageName: French
@@ -20,7 +19,6 @@ languages:
     weight: 1
   en:
     contentDir: content/en
-    disabled: false
     languageCode: en-US
     languageDirection: ltr
     languageName: English
