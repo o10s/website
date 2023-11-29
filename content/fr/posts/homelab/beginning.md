@@ -8,7 +8,7 @@ tags:
 categories: 
 - Technologies
 cover:
-  image: "images/posts/beginning.png"
+  image: "images/posts/homelab/beginning.png"
   alt: "L'image de couverture de l'article"
   relative: false 
 
