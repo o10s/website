@@ -28,7 +28,7 @@ cover:
 - 7g de levure sèche
 - 15g de poudre à lever
 - 1g de sel
-- 50g de protéine de lactosérum au chocolat
+- 50g de protéine de whey au chocolat
 - 30g de poudre de cacao 100%
 
 **Liquides:**

@@ -28,7 +28,7 @@ cover:
 - 7g de levure sèche
 - 15g de levure chimique
 - 1g de sel
-- 50g de protéine de Whey à la vanille
+- 50g de protéine de whey à la vanille
 
 **Liquides:**
 - 2 œufs
