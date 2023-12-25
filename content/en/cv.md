@@ -38,7 +38,7 @@ For professional inquiries, please email: [contact@o10s.ch](mailto:contact@o10s.
 ### Software Engineer  
 **Company:** [Tradition](https://www.tradition.com/)  
 **Dates:** July 2017 - July 2019  
-**Location:** 🇨🇭 [hereLausanne](https://maps.app.goo.gl/Bw3NZboC4KjVQL7N7)   
+**Location:** 🇨🇭 [Lausanne](https://maps.app.goo.gl/Bw3NZboC4KjVQL7N7)   
 - **Responsibilities:**
   1. Full-stack development of Tradition's internal application, implementing end-to-end solutions to enhance business processes and user experience.
   2. Provided comprehensive user support across Asia, America, and Europe, ensuring seamless operation and high levels of satisfaction for global offices.
@@ -61,3 +61,19 @@ _From March 2016 to January 2017 I went back to University._
 - **Responsibilities:**
   1. Migration and development of Java & MySQL databases, ensuring seamless integration and enhanced performance of existing software.
   2. Development and documentation of a global system website, focusing on package management design, IP access control, and distribution strategies.
+
+### Technical Student  
+**Company:** [CERN](https://home.cern/)  
+**Dates:** September 2014 - October 2015  
+**Location:** 🇨🇭 [Meyrin](https://maps.app.goo.gl/JCz6RvS2XPEQzsq1A)   
+- **Responsibilities:**
+  1. Development of the new alarm console of the Large Hadron Collider (LHC).
+  2. Responsible for the architecture, design and implementation of the graphical user interface.
+
+### Summer Student  
+**Company:** [CERN](https://home.cern/)  
+**Dates:** June 2014 - September 2014  
+**Location:** 🇨🇭 [Meyrin](https://maps.app.goo.gl/JCz6RvS2XPEQzsq1A)   
+- **Responsibilities:**
+  1. Development of the new collaboration and operational workspace portal for CERN’s Fire Brigade.
+  2. Responsible for the design and implementation.
