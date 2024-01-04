@@ -20,8 +20,8 @@ staticDir:
 
 **o10s' Rating:** ⭐⭐⭐⭐⭐
 
-## Macros:
-**Calories:** TBD - **Carbs:** TBD | **Fat:** TBD | **Protein:** TBD
+## Macros (per pizza/bread, makes 4):
+**Calories:** 657kCal - **Carbs:** 124.9g | **Fat:** 7g | **Protein:** 21.4g
 
 ## Ingredients: 
 This recipe will be enough to make 4 pizzas but one can cut the dough in how many pieces you like.

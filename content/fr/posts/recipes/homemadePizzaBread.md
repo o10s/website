@@ -16,9 +16,8 @@ cover:
 
 **Évaluation d’o10s:** ⭐⭐⭐⭐⭐
 
-## Macros:
-
-**Calories:** À déterminer - **Glucides:** À déterminer | **Graisses:** À déterminer | **Protéines:** À déterminer
+## Macros (Par pizza/pain, 4 portion):
+**Calories:** 657kCal - **Glucides:** 124.9g | **Graisses:** 7g | **Protéines:** 21.4g
 
 ### Ingrédients:
 
