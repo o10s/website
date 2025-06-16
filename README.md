@@ -1,51 +1,59 @@
-# Olivier Alves - Personal Website
+# Personal Portfolio & Blog
 
-A modern, performant personal website and blog built with cutting-edge web technologies. This site showcases my professional work, thoughts on technology, and various projects.
+A modern, performant portfolio website and technical blog built with Astro. This static site showcases professional work, technical articles on cloud computing, DevOps, and platform engineering.
 
 ## 🚀 Tech Stack
 
 ### Core Framework
-- **[Astro](https://astro.build/)** - Static site generator with excellent performance and developer experience
-- **TypeScript** - For type-safe development
-- **Static Output** - Pre-rendered at build time for optimal performance
+- **[Astro 5.9](https://astro.build/)** - Static site generator with excellent performance
+- **TypeScript** - Type-safe development
+- **Static Output** - Pre-rendered for GitHub Pages deployment
 
-### Styling
-- **[Tailwind CSS v4](https://tailwindcss.com/)** - Utility-first CSS framework
-- **Custom CSS** - For markdown rendering and specific component styles
+### Styling & UI
+- **[Tailwind CSS v4](https://tailwindcss.com/)** - Utility-first CSS with Vite plugin
+- **Lucide Icons** - Modern icon library for Astro
 - **Dark Mode** - System preference detection with manual toggle
 
 ### Features
-- **Content Collections** - Type-safe content management for blog posts and projects
-- **MDX Support** - Enhanced markdown with component embedding capabilities
-- **Syntax Highlighting** - Using Shiki with GitHub Dark theme
-- **SEO Optimized** - Meta tags, Open Graph, and structured data
+- **Content Collections** - Type-safe content management for 50+ blog posts and projects
+- **MDX Support** - Enhanced markdown with component capabilities
+- **Syntax Highlighting** - Shiki with GitHub Dark theme
 - **Responsive Design** - Mobile-first approach
-- **Search Functionality** - Client-side blog post filtering
+- **Draft Support** - Hide unfinished content from production
+- **Chronological Organization** - Blog posts organized by year/month
 
 ## 📁 Project Structure
 
 ```
 /
-├── public/               # Static assets (favicon, robots.txt)
-├── scripts/              # Build and utility scripts
+├── public/               # Static assets
 ├── src/
 │   ├── components/       # Reusable Astro components
-│   │   ├── Header.astro  # Navigation with construction banner
-│   │   ├── Footer.astro  # Site footer
-│   │   └── ...
-│   ├── content/          # Content collections
-│   │   ├── blog/         # Blog posts in MDX
-│   │   └── projects/     # Project showcases
+│   │   ├── Header.astro  # Navigation header
+│   │   ├── Footer.astro  # Site footer with social links
+│   │   ├── ThemeToggle.astro # Dark mode toggle
+│   │   ├── BlogPostCard.astro # Blog post preview cards
+│   │   └── ProjectCard.astro  # Project showcase cards
+│   ├── content/          # Content collections with 50+ posts
+│   │   ├── blog/         # Blog posts organized by year/month
+│   │   │   └── 2024/     # e.g., 01/, 02/, 03/...
+│   │   ├── projects/     # Project showcases
+│   │   └── config.ts     # Content schemas with Zod validation
 │   ├── layouts/          # Page layouts
-│   │   └── Layout.astro  # Base layout
+│   │   └── BaseLayout.astro # Main layout for all pages
 │   ├── pages/            # Route pages
-│   │   ├── index.astro   # Homepage
+│   │   ├── index.astro   # Portfolio homepage
 │   │   ├── about.astro   # About page
-│   │   ├── blog/         # Blog listing and posts
+│   │   ├── cv.astro      # Resume/CV page
+│   │   ├── blog/         # Blog listing and dynamic posts
+│   │   │   ├── index.astro    # Blog listing page
+│   │   │   └── [...slug].astro # Dynamic blog post routes
 │   │   └── projects/     # Projects showcase
+│   │       ├── index.astro    # Projects listing
+│   │       └── [...slug].astro # Dynamic project routes
 │   └── styles/           # Global styles
+│       └── global.css    # Custom utilities and Tailwind imports
 ├── astro.config.mjs      # Astro configuration
-├── tailwind.config.js    # Tailwind configuration
 └── package.json          # Dependencies and scripts
 ```
 
@@ -59,8 +67,8 @@ A modern, performant personal website and blog built with cutting-edge web techn
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/o10s/personal-website.git
-   cd personal-website
+   git clone https://github.com/o10s/test-astro-website.git
+   cd test-astro-website
    ```
 
 2. **Install dependencies**
@@ -87,7 +95,7 @@ A modern, performant personal website and blog built with cutting-edge web techn
 ## 📝 Content Management
 
 ### Blog Posts
-Blog posts are stored in `src/content/blog/` as MDX files with frontmatter:
+Blog posts are organized by year and month in `src/content/blog/YYYY/MM/` as MDX files:
 
 ```markdown
 ---
@@ -95,11 +103,19 @@ title: "Post Title"
 description: "Post description"
 pubDate: 2024-01-15
 author: "Olivier Alves"
-tags: ["web-development", "astro"]
+tags: ["kubernetes", "devops", "cloud"]
+draft: false  # Set to true to hide from production
 ---
 
 Your content here...
 ```
+
+Current topics include:
+- Kubernetes & Container Orchestration
+- Cloud Computing (AWS, Azure, GCP)
+- DevOps & Platform Engineering
+- Infrastructure as Code
+- Security & Best Practices
 
 ### Projects
 Projects are in `src/content/projects/` with the following structure:
@@ -119,29 +135,41 @@ Project details...
 
 ## 🎨 Customization
 
-### Toggle Construction Banner
-In `src/components/Header.astro`:
-```javascript
-const SHOW_UNDER_CONSTRUCTION = true; // Set to false to hide
+### Theme Colors
+The site uses Tailwind CSS v4 for theming with custom utility classes defined in `src/styles/global.css`:
+- Primary actions: Blue scale
+- Text: Gray scale with dark mode variants
+- Dark mode: System preference with manual toggle via `ThemeToggle` component
+
+### Custom CSS Classes
+- `.btn` - Button styles
+- `.input` - Form input styles  
+- `.card` - Card component styles
+
+## 🚀 Deployment
+
+This site is configured for GitHub Pages deployment:
+
+```bash
+npm run build    # Creates static site in ./dist/
 ```
 
-### Theme Colors
-The site uses Tailwind CSS for theming. Main colors:
-- Primary: Blue (`blue-600`)
-- Text: Gray scale
-- Dark mode: Automatic with system preference
-
+The build output is optimized for static hosting with:
+- Pre-rendered HTML pages
+- Optimized assets
+- Proper routing for GitHub Pages
 
 ## 📄 License
 
-This project is private and proprietary. All rights reserved.
+This project is open source. See LICENSE file for details.
 
 ## 👤 Author
 
 **Olivier Alves**
-- Website: [me.o10s.ch](https://me.o10s.ch)
+- Portfolio: [o10s.github.io](https://o10s.github.io)
 - GitHub: [@o10s](https://github.com/o10s)
+- Email: contact@o10s.ch
 
 ## 🙏 Acknowledgments
 
-Built with [Astro](https://astro.build/) and inspired by modern web development best practices.
+Built with [Astro](https://astro.build/) and the amazing web development community.
