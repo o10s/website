@@ -7,6 +7,29 @@ author: 'Olivier Alves'
 
 ---
 
+import DataVisualization from '~/components/DataVisualization.astro';
+
+export const blockchainOutcomes = {
+  'Total POCs Launched': 8947,
+  'Reached Pilot': 2341,
+  'Reached Production': 423,
+  'Still Active 2025': 127,
+  'Delivering ROI': 34
+};
+
+export const moneySpent = {
+  'Consulting': '$4.7B',
+  'Development': '$2.3B',
+  'Infrastructure': '$890M',
+  'Conferences': '$340M'
+};
+
+export const projectStats = {
+  'Average POC Cost': '$847,000',
+  'Average Time to Failure': '8 months',
+  'Most Common Excuse': 'Regulatory concerns'
+};
+
 ## Introduction
 
 Five years ago, blockchain was going to revolutionize everything. Supply chains would be transparent, financial settlements instant, and trust would be programmatically guaranteed. Enterprises rushed to launch blockchain initiatives, afraid of being left behind in the "Web3 revolution." Consulting firms made billions selling blockchain transformation. Then reality hit.
@@ -19,27 +42,25 @@ Today in 2025, the wreckage of failed blockchain projects litters the enterprise
 
 The brutal reality of enterprise blockchain:
 
-```python
-blockchain_project_outcomes = {
-    'total_pocs_launched': 8_947,
-    'reached_pilot': 2_341,           # 26%
-    'reached_production': 423,         # 4.7%
-    'still_active_2025': 127,         # 1.4%
-    'delivering_roi': 34,             # 0.38%
-    
-    'money_spent': {
-        'consulting': '$4.7 billion',
-        'development': '$2.3 billion',
-        'infrastructure': '$890 million',
-        'conferences': '$340 million',
-        'total_wasted': '~$7.2 billion'
-    },
-    
-    'average_poc_cost': '$847,000',
-    'average_time_to_failure': '8 months',
-    'most_common_excuse': 'Regulatory concerns'
-}
-```
+<DataVisualization 
+  type="bar" 
+  data={blockchainOutcomes} 
+  title="Blockchain Project Outcomes (out of 8,947 POCs)"
+  className="mb-6"
+/>
+
+<DataVisualization 
+  type="pie" 
+  data={moneySpent} 
+  title="Money Spent on Blockchain Initiatives"
+  className="mb-6"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={projectStats} 
+  title="Key Project Statistics"
+/>
 
 ### The Consulting Gold Rush
 

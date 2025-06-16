@@ -7,6 +7,16 @@ author: 'Olivier Alves'
 
 ---
 
+import DataVisualization from '~/components/DataVisualization.astro';
+
+export const buildPredictionFeatures = {
+  'Files Changed': '47',
+  'Test Coverage Delta': '-2.3%',
+  'Author Failure Rate': '15%',
+  'Time Since Last Commit': '72 hours',
+  'Dependencies Updated': '3'
+};
+
 ## Introduction
 
 The continuous integration and deployment landscape of 2025 bears little resemblance to the simple build-test-deploy pipelines of just five years ago. What began as basic automation has evolved into sophisticated, AI-driven systems that can predict failures, optimize resource usage, and even fix themselves. With the CI/CD tools market reaching $3.72 billion and AI integration becoming standard rather than exceptional, we're witnessing a fundamental transformation in how software reaches production.
@@ -53,7 +63,7 @@ A major investment bank's AI-powered CI/CD transformation offers compelling evid
 **After AI Integration (2025):**
 - 45-minute average build times
 - 3% build failure rate
-- Manual intervention for <5% of deployments
+- Manual intervention for less than 5% of deployments
 - $1.2 million annual costs despite 3x deployment volume
 
 **Key Success Factors:**
@@ -99,16 +109,16 @@ Modern AI-driven CI/CD systems employ sophisticated techniques:
 - Production incident correlations
 
 **ML Models in Action:**
-```python
-# Simplified example of build failure prediction
-features = {
-    'files_changed': 47,
-    'test_coverage_delta': -2.3,
-    'author_failure_rate': 0.15,
-    'time_since_last_commit': 72,
-    'dependencies_updated': 3
-}
 
+<DataVisualization 
+  type="stats" 
+  data={buildPredictionFeatures} 
+  title="Build Failure Prediction Features"
+  className="mb-6"
+/>
+
+```python
+# Simplified prediction logic
 failure_probability = model.predict(features)
 if failure_probability > 0.7:
     trigger_enhanced_validation()
@@ -210,7 +220,7 @@ Based on extensive analysis, AI proves most valuable for:
 
 AI struggles with:
 
-1. **Small Teams**: Overhead exceeds benefits for <50 developers
+1. **Small Teams**: Overhead exceeds benefits for teams under 50 developers
 2. **Novel Problems**: No historical data for training
 3. **Creative Solutions**: AI tends toward conservative approaches
 4. **Context Understanding**: Missing business reasons behind technical decisions

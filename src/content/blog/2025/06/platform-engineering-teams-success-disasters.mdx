@@ -7,6 +7,24 @@ author: 'Olivier Alves'
 
 ---
 
+import DataVisualization from '~/components/DataVisualization.astro';
+
+export const platformStats = {
+  'Companies with Platform Teams': '73%',
+  'Average Team Size': '12 engineers',
+  'Budget Allocation': '$2.4M/year',
+  'Developer Ratio (Target)': '50:1',
+  'Developer Ratio (Reality)': '200:1'
+};
+
+export const successRates = {
+  'Transformative': 15,
+  'Positive Impact': 25,
+  'Neutral': 20,
+  'Negative Impact': 30,
+  'Complete Failure': 10
+};
+
 ## Introduction
 
 Platform engineering was supposed to solve the DevOps scaling crisis. Instead of every team reinventing the wheel, a central platform team would provide golden paths, self-service infrastructure, and developer happiness. Three years into the platform engineering revolution, the results are wildly divergent. Some organizations report 10x developer productivity gains, while others have created new bureaucracies that make IT look agile by comparison.
@@ -19,24 +37,21 @@ This investigation exposes both sides of the platform engineering story: the tea
 
 Platform engineering adoption in 2025:
 
-```python
-platform_engineering_stats = {
-    'companies_with_platform_teams': '73%',  # Fortune 500
-    'average_team_size': 12,
-    'budget_allocation': '$2.4M/year average',
-    'developer_to_platform_ratio': '50:1 (target), 200:1 (reality)',
-    
-    'success_rate': {
-        'transformative': '15%',
-        'positive_impact': '25%',
-        'neutral': '20%',
-        'negative_impact': '30%',
-        'complete_failure': '10%'
-    }
-}
+<DataVisualization 
+  type="stats" 
+  data={platformStats} 
+  title="Platform Engineering Adoption (Fortune 500)"
+  className="mb-6"
+/>
 
-# 40% failure rate is the dirty secret
-```
+<DataVisualization 
+  type="pie" 
+  data={successRates} 
+  title="Platform Team Success Rates"
+  className="mb-6"
+/>
+
+**The dirty secret: 40% of platform teams have negative or failed impact**
 
 ### The Promise vs Reality
 
@@ -71,33 +86,51 @@ platform_team_promises:
 
 How Spotify gets platform engineering right:
 
-```python
-spotify_platform_model = {
-    'team_structure': {
-        'platform_teams': 8,
-        'focus_areas': [
-            'Developer_experience',
-            'Data_platform',
-            'ML_platform',
-            'Mobile_platform',
-            'Infrastructure',
-            'Security_platform',
-            'Observability',
-            'CI/CD'
-        ],
-        'total_engineers': 120,
-        'serving': 2000  # developers
-    },
-    
-    'key_principles': [
-        'Optional adoption',  # Not mandatory
-        'Self-service first',
-        'Documentation obsession',
-        'Regular rotation',  # Platform ↔ Product
-        'Customer mindset'  # Devs are customers
-    ]
-}
-```
+export const spotifyTeamStructure = {
+  'Platform Teams': '8',
+  'Total Engineers': '120',
+  'Serving Developers': '2000'
+};
+
+export const spotifyFocusAreas = {
+  'Developer Experience': 'Primary focus',
+  'Data Platform': 'Analytics infrastructure',
+  'ML Platform': 'Machine learning tools',
+  'Mobile Platform': 'iOS/Android tooling',
+  'Infrastructure': 'Core services',
+  'Security Platform': 'Security tooling',
+  'Observability': 'Monitoring & logging',
+  'CI/CD': 'Build & deploy'
+};
+
+export const spotifyKeyPrinciples = {
+  'Optional Adoption': 'Not mandatory',
+  'Self-service First': 'Automation priority',
+  'Documentation Obsession': 'Everything documented',
+  'Regular Rotation': 'Platform ↔ Product',
+  'Customer Mindset': 'Devs are customers'
+};
+
+<DataVisualization 
+  type="stats" 
+  data={spotifyTeamStructure} 
+  title="Spotify Platform Team Structure"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="bar" 
+  data={spotifyFocusAreas} 
+  title="Spotify Platform Focus Areas"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={spotifyKeyPrinciples} 
+  title="Spotify Platform Key Principles"
+  className="mb-6"
+/>
 
 ### Spotify's Secret Sauce
 
@@ -162,7 +195,7 @@ spotify_culture:
   measurement:
     - Developer NPS score: 72
     - Time to production: -67%
-    - Incidents from platform: <5%
+    - Incidents from platform: "Less than 5%"
 ```
 
 ## Disaster Story: The Startup That Platform'd Too Early
@@ -171,31 +204,51 @@ spotify_culture:
 
 A cautionary tale of premature optimization:
 
-```python
-# Company: 50 employees, 15 engineers
-# Decision: "We need a platform team!"
+// Company context: 50 employees, 15 engineers
+// Fatal decision: "We need a platform team!"
 
-timeline = {
-    'Month 1': 'Hire platform lead from FAANG',
-    'Month 2': 'Platform team: 3 engineers (20% of eng!)',
-    'Month 3': 'Start building "the platform"',
-    'Month 6': 'Force teams to use half-built platform',
-    'Month 9': 'Product development grinds to halt',
-    'Month 12': 'Company pivots, platform abandoned',
-    'Month 15': 'Company fails'
-}
+export const startupTimeline = {
+  'Month 1': 'Hire platform lead from FAANG',
+  'Month 2': 'Platform team: 3 engineers (20% of eng!)',
+  'Month 3': 'Start building "the platform"',
+  'Month 6': 'Force teams to use half-built platform',
+  'Month 9': 'Product development grinds to halt',
+  'Month 12': 'Company pivots, platform abandoned',
+  'Month 15': 'Company fails'
+};
 
-what_went_wrong = {
-    'premature_abstraction': 'Built platform before product',
-    'ivory_tower': 'Platform team disconnected from needs',
-    'forced_adoption': 'Mandated unusable tools',
-    'resource_drain': '20% of engineers building tools',
-    'complexity_explosion': 'Simple tasks became complex',
-    
-    'quote': "We were so busy building the platform, \
-              we forgot to build the product"
-}
-```
+export const whatWentWrong = {
+  'Premature Abstraction': 'Built platform before product',
+  'Ivory Tower': 'Platform team disconnected from needs',
+  'Forced Adoption': 'Mandated unusable tools',
+  'Resource Drain': '20% of engineers building tools',
+  'Complexity Explosion': 'Simple tasks became complex'
+};
+
+export const startupFailureQuote = {
+  'Fatal Quote': "We were so busy building the platform, we forgot to build the product"
+};
+
+<DataVisualization 
+  type="process" 
+  data={startupTimeline} 
+  title="Startup Platform Disaster Timeline"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={whatWentWrong} 
+  title="What Went Wrong"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={startupFailureQuote} 
+  title="The Fatal Mindset"
+  className="mb-6"
+/>
 
 ### The Anti-Patterns
 
@@ -298,42 +351,64 @@ hybrid_model:
 
 How to measure platform success:
 
-```python
-# Good metrics
-platform_success_metrics = {
-    'developer_nps': 'Net Promoter Score from devs',
-    'time_to_first_deploy': 'New service → production',
-    'self_service_percentage': '% tasks needing no ticket',
-    'mttr': 'Mean time to resolve issues',
-    'adoption_rate': '% voluntary usage',
-    'developer_velocity': 'Features/sprint improvement'
-}
+export const goodMetrics = {
+  'Developer NPS': 'Net Promoter Score from devs',
+  'Time to First Deploy': 'New service → production',
+  'Self-service %': '% tasks needing no ticket',
+  'MTTR': 'Mean time to resolve issues',
+  'Adoption Rate': '% voluntary usage',
+  'Developer Velocity': 'Features/sprint improvement'
+};
 
-# Bad metrics
-vanity_metrics = {
-    'number_of_tools': 'More isn't better',
-    'tickets_closed': 'Encourages ticket-driven work',
-    'platform_uptime': 'Table stakes, not success',
-    'forced_adoption': 'Mandatory usage rate',
-    'technology_count': 'Complexity isn't achievement'
-}
+export const vanityMetrics = {
+  'Number of Tools': 'More isn\'t better',
+  'Tickets Closed': 'Encourages ticket-driven work',
+  'Platform Uptime': 'Table stakes, not success',
+  'Forced Adoption': 'Mandatory usage rate',
+  'Technology Count': 'Complexity isn\'t achievement'
+};
 
-# Real success story metrics
-successful_platform_impact = {
-    'before': {
-        'new_service_time': '2 weeks',
-        'deployment_frequency': 'Weekly',
-        'developer_satisfaction': '4.2/10',
-        'incident_rate': '3.4/week'
-    },
-    'after': {
-        'new_service_time': '2 hours',
-        'deployment_frequency': '50/day',
-        'developer_satisfaction': '8.7/10',
-        'incident_rate': '0.5/week'
-    }
-}
-```
+export const beforePlatform = {
+  'New Service Time': '2 weeks',
+  'Deployment Frequency': 'Weekly',
+  'Developer Satisfaction': '4.2/10',
+  'Incident Rate': '3.4/week'
+};
+
+export const afterPlatform = {
+  'New Service Time': '2 hours',
+  'Deployment Frequency': '50/day',
+  'Developer Satisfaction': '8.7/10',
+  'Incident Rate': '0.5/week'
+};
+
+<DataVisualization 
+  type="stats" 
+  data={goodMetrics} 
+  title="Good Platform Success Metrics"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={vanityMetrics} 
+  title="Vanity Metrics to Avoid"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="bar" 
+  data={beforePlatform} 
+  title="Before Platform Team"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="bar" 
+  data={afterPlatform} 
+  title="After Platform Team Success"
+  className="mb-6"
+/>
 
 ## The Platform Engineering Maturity Model
 
@@ -341,41 +416,87 @@ successful_platform_impact = {
 
 Where organizations typically are:
 
-```python
-maturity_levels = {
-    'level_0_chaos': {
-        'characteristics': 'Every team for themselves',
-        'pain': 'Massive duplication',
-        'organizations': '20%'
-    },
-    
-    'level_1_scripts': {
-        'characteristics': 'Shared scripts and docs',
-        'pain': 'Maintenance nightmare',
-        'organizations': '30%'
-    },
-    
-    'level_2_services': {
-        'characteristics': 'Central services, manual processes',
-        'pain': 'Ticket bottlenecks',
-        'organizations': '25%'
-    },
-    
-    'level_3_platform': {
-        'characteristics': 'Self-service platform',
-        'pain': 'Adoption challenges',
-        'organizations': '20%'
-    },
-    
-    'level_4_ecosystem': {
-        'characteristics': 'Platform as product',
-        'pain': 'Continuous evolution',
-        'organizations': '5%'
-    }
-}
+export const maturityDistribution = {
+  'Level 0 - Chaos': '20%',
+  'Level 1 - Scripts': '30%',
+  'Level 2 - Services': '25%',
+  'Level 3 - Platform': '20%',
+  'Level 4 - Ecosystem': '5%'
+};
 
-# Most stuck at levels 1-2
-```
+export const level0Chaos = {
+  'Characteristics': 'Every team for themselves',
+  'Pain Point': 'Massive duplication',
+  'Organizations': '20%'
+};
+
+export const level1Scripts = {
+  'Characteristics': 'Shared scripts and docs',
+  'Pain Point': 'Maintenance nightmare',
+  'Organizations': '30%'
+};
+
+export const level2Services = {
+  'Characteristics': 'Central services, manual processes',
+  'Pain Point': 'Ticket bottlenecks',
+  'Organizations': '25%'
+};
+
+export const level3Platform = {
+  'Characteristics': 'Self-service platform',
+  'Pain Point': 'Adoption challenges',
+  'Organizations': '20%'
+};
+
+export const level4Ecosystem = {
+  'Characteristics': 'Platform as product',
+  'Pain Point': 'Continuous evolution',
+  'Organizations': '5%'
+};
+
+<DataVisualization 
+  type="pie" 
+  data={maturityDistribution} 
+  title="Platform Engineering Maturity Distribution"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={level0Chaos} 
+  title="Level 0: Chaos"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={level1Scripts} 
+  title="Level 1: Scripts"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={level2Services} 
+  title="Level 2: Services"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={level3Platform} 
+  title="Level 3: Platform"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={level4Ecosystem} 
+  title="Level 4: Ecosystem"
+  className="mb-6"
+/>
+
+// Note: Most organizations stuck at levels 1-2
 
 ### The Journey to Level 4
 
@@ -513,27 +634,47 @@ platform_engineer_skills:
 
 Platform engineering stress:
 
-```python
-burnout_factors = {
-    'always_on_call': 'Platform breaks, everything breaks',
-    'thankless': 'Success invisible, failures visible',
-    'moving_target': 'Requirements change constantly',
-    'politics': 'Everyone has opinions on platform',
-    'impostor_syndrome': 'Need to know everything',
-    
-    'average_tenure': '18 months',
-    'burnout_rate': '67% within 2 years'
-}
+export const burnoutFactors = {
+  'Always On-call': 'Platform breaks, everything breaks',
+  'Thankless Work': 'Success invisible, failures visible',
+  'Moving Target': 'Requirements change constantly',
+  'Politics': 'Everyone has opinions on platform',
+  'Impostor Syndrome': 'Need to know everything'
+};
 
-# Mitigation strategies
-burnout_prevention = {
-    'rotation': 'Regular team rotations',
-    'boundaries': 'Clear on-call policies',
-    'celebration': 'Publicize wins',
-    'support': 'Mental health resources',
-    'growth': 'Learning budgets'
-}
-```
+export const burnoutStats = {
+  'Average Tenure': '18 months',
+  'Burnout Rate': '67% within 2 years'
+};
+
+export const burnoutPrevention = {
+  'Rotation': 'Regular team rotations',
+  'Boundaries': 'Clear on-call policies',
+  'Celebration': 'Publicize wins',
+  'Support': 'Mental health resources',
+  'Growth': 'Learning budgets'
+};
+
+<DataVisualization 
+  type="stats" 
+  data={burnoutFactors} 
+  title="Platform Engineer Burnout Factors"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={burnoutStats} 
+  title="Burnout Statistics"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={burnoutPrevention} 
+  title="Burnout Prevention Strategies"
+  className="mb-6"
+/>
 
 ## The Future of Platform Engineering
 
@@ -541,33 +682,57 @@ burnout_prevention = {
 
 Where platform engineering is heading:
 
-```python
-future_trends = {
-    'ai_integration': {
-        'description': 'AI-powered platform operations',
-        'timeline': 'Already starting',
-        'impact': 'Reduce toil by 50%'
-    },
-    
-    'platform_marketplace': {
-        'description': 'Internal tool marketplaces',
-        'timeline': '2026',
-        'impact': 'Federated platform development'
-    },
-    
-    'backstage_dominance': {
-        'description': 'Backstage becomes standard',
-        'timeline': '2025-2026',
-        'impact': '60% adoption rate'
-    },
-    
-    'platform_as_a_service': {
-        'description': 'Outsourced platform teams',
-        'timeline': '2027',
-        'impact': 'SMBs get enterprise platforms'
-    }
-}
-```
+export const aiIntegration = {
+  'Description': 'AI-powered platform operations',
+  'Timeline': 'Already starting',
+  'Impact': 'Reduce toil by 50%'
+};
+
+export const platformMarketplace = {
+  'Description': 'Internal tool marketplaces',
+  'Timeline': '2026',
+  'Impact': 'Federated platform development'
+};
+
+export const backstageDominance = {
+  'Description': 'Backstage becomes standard',
+  'Timeline': '2025-2026',
+  'Impact': '60% adoption rate'
+};
+
+export const platformAsService = {
+  'Description': 'Outsourced platform teams',
+  'Timeline': '2027',
+  'Impact': 'SMBs get enterprise platforms'
+};
+
+<DataVisualization 
+  type="stats" 
+  data={aiIntegration} 
+  title="AI Integration Trend"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={platformMarketplace} 
+  title="Platform Marketplace Trend"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={backstageDominance} 
+  title="Backstage Dominance Trend"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={platformAsService} 
+  title="Platform-as-a-Service Trend"
+  className="mb-6"
+/>
 
 ### The Consolidation Coming
 

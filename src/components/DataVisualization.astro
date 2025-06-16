@@ -1,0 +1,215 @@
+---
+export interface Props {
+  type: 'bar' | 'pie' | 'timeline' | 'stats' | 'flow';
+  data: Record<string, any>;
+  title?: string;
+  className?: string;
+}
+
+const { type, data, title, className = '' } = Astro.props;
+
+// Helper function to format keys
+function formatKey(key: string): string {
+  return key.replace(/_/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase());
+}
+
+// Helper function to safely convert to string
+function toString(value: any): string {
+  return String(value);
+}
+
+// Process data for stats view
+const statsEntries = type === 'stats' ? Object.entries(data) : [];
+const simpleStats = statsEntries.filter(([_, value]) => typeof value !== 'object' || Array.isArray(value));
+const nestedStats = statsEntries.filter(([_, value]) => typeof value === 'object' && !Array.isArray(value));
+
+// Process data for pie chart
+let pieData: Array<{ label: string; value: number; color: string; percent: number; pathData: string }> = [];
+if (type === 'pie') {
+  const total = Object.values(data).reduce((sum: number, val: any) => 
+    sum + (typeof val === 'number' ? val : parseFloat(toString(val)) || 0), 0
+  );
+  
+  let cumulativePercent = 0;
+  const colors = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899'];
+  
+  pieData = Object.entries(data).map(([label, value], index) => {
+    const numValue = typeof value === 'number' ? value : parseFloat(toString(value)) || 0;
+    const percent = (numValue / total) * 100;
+    const startAngle = (cumulativePercent / 100) * 360;
+    const endAngle = ((cumulativePercent + percent) / 100) * 360;
+    
+    const start = {
+      x: 50 + 40 * Math.cos((startAngle * Math.PI) / 180),
+      y: 50 + 40 * Math.sin((startAngle * Math.PI) / 180)
+    };
+    const end = {
+      x: 50 + 40 * Math.cos((endAngle * Math.PI) / 180),
+      y: 50 + 40 * Math.sin((endAngle * Math.PI) / 180)
+    };
+    
+    const largeArcFlag = percent > 50 ? 1 : 0;
+    const pathData = [
+      `M 50 50`,
+      `L ${start.x} ${start.y}`,
+      `A 40 40 0 ${largeArcFlag} 1 ${end.x} ${end.y}`,
+      `Z`
+    ].join(' ');
+    
+    cumulativePercent += percent;
+    const color = colors[index % colors.length];
+    
+    return { label, value: numValue, color, percent, pathData };
+  });
+}
+---
+
+{type === 'stats' && (
+  <div class={`bg-gray-100 dark:bg-gray-800 rounded-lg p-6 ${className}`}>
+    {title && <h3 class="text-xl font-bold mb-4">{title}</h3>}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {simpleStats.map(([key, value]) => (
+        <div class="bg-white dark:bg-gray-700 p-4 rounded shadow">
+          <span class="text-sm text-gray-600 dark:text-gray-400 block">
+            {formatKey(key)}
+          </span>
+          <span class="text-xl font-bold text-gray-900 dark:text-gray-100">
+            {toString(value)}
+          </span>
+        </div>
+      ))}
+      {nestedStats.map(([key, value]) => (
+        <div class="col-span-full">
+          <h4 class="font-semibold text-lg mb-2 text-gray-700 dark:text-gray-300">
+            {formatKey(key)}
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {Object.entries(value).map(([subKey, subValue]) => (
+              <div class="bg-white dark:bg-gray-700 p-3 rounded shadow">
+                <span class="text-sm text-gray-600 dark:text-gray-400 block">
+                  {formatKey(subKey)}
+                </span>
+                <span class="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                  {toString(subValue)}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
+{type === 'bar' && (
+  <div class={`bg-gray-100 dark:bg-gray-800 rounded-lg p-6 ${className}`}>
+    {title && <h3 class="text-xl font-bold mb-4">{title}</h3>}
+    <div class="space-y-3">
+      {Object.entries(data).map(([label, value]) => {
+        const percentage = typeof value === 'number' ? value : parseFloat(toString(value));
+        const displayValue = typeof value === 'string' ? value : `${value}%`;
+        return (
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                {formatKey(label)}
+              </span>
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                {displayValue}
+              </span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+              <div 
+                class="bg-blue-600 h-2.5 rounded-full transition-all duration-500" 
+                style={`width: ${Math.min(percentage, 100)}%`}
+              />
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+)}
+
+{type === 'timeline' && (
+  <div class={`bg-gray-100 dark:bg-gray-800 rounded-lg p-6 ${className}`}>
+    {title && <h3 class="text-xl font-bold mb-4">{title}</h3>}
+    <div class="relative">
+      <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-300 dark:bg-gray-600"></div>
+      <div class="space-y-6">
+        {Object.entries(data).map(([step, details]) => (
+          <div class="relative flex items-start">
+            <div class="absolute left-4 w-3 h-3 bg-blue-600 rounded-full -translate-x-1/2 ring-4 ring-white dark:ring-gray-800"></div>
+            <div class="ml-10">
+              <h4 class="font-semibold text-gray-900 dark:text-gray-100">
+                {formatKey(step)}
+              </h4>
+              <p class="text-gray-600 dark:text-gray-400 mt-1">
+                {typeof details === 'object' ? JSON.stringify(details, null, 2) : toString(details)}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+)}
+
+{type === 'pie' && (
+  <div class={`bg-gray-100 dark:bg-gray-800 rounded-lg p-6 ${className}`}>
+    {title && <h3 class="text-xl font-bold mb-4">{title}</h3>}
+    <div class="flex flex-col lg:flex-row items-center gap-6">
+      <div class="relative w-64 h-64">
+        <svg viewBox="0 0 100 100" class="transform -rotate-90">
+          {pieData.map((item) => (
+            <path
+              d={item.pathData}
+              fill={item.color}
+              stroke="white"
+              stroke-width="0.5"
+              class="hover:opacity-80 transition-opacity"
+            />
+          ))}
+        </svg>
+      </div>
+      <div class="space-y-2">
+        {pieData.map((item) => (
+          <div class="flex items-center gap-3">
+            <div class="w-4 h-4 rounded" style={`background-color: ${item.color}`}></div>
+            <span class="text-sm">
+              {formatKey(item.label)}: {toString(item.value)}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+)}
+
+{type === 'flow' && (
+  <div class={`bg-gray-100 dark:bg-gray-800 rounded-lg p-6 ${className}`}>
+    {title && <h3 class="text-xl font-bold mb-4">{title}</h3>}
+    <div class="flex flex-col gap-4">
+      {Object.entries(data).map(([step, description], index, array) => (
+        <div class="flex items-center gap-4">
+          <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
+            {index + 1}
+          </div>
+          <div class="flex-grow bg-white dark:bg-gray-700 p-3 rounded shadow">
+            <span class="font-semibold text-gray-900 dark:text-gray-100">
+              {formatKey(step)}:
+            </span>
+            <span class="text-gray-600 dark:text-gray-400 ml-2">
+              {toString(description)}
+            </span>
+          </div>
+          {index < array.length - 1 && (
+            <svg class="w-6 h-6 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+)}

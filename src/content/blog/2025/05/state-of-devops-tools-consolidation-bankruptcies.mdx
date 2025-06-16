@@ -7,6 +7,30 @@ author: 'Olivier Alves'
 
 ---
 
+import DataVisualization from '~/components/DataVisualization.astro';
+
+export const hashicorpCrisis = {
+  'Stock Price': '-73%',
+  'License Backlash': 'BSL killed trust',
+  'OpenTofu Threat': 'Fork gaining momentum',
+  'Revenue Growth': 'Slowing dramatically',
+  'Enterprise Pressure': 'Single vendor demand'
+};
+
+export const devopsCosts = {
+  'Licensing': '$847K/year',
+  'Integration': '$234K/year',
+  'Training': '$156K/year',
+  'Maintenance': '$423K/year'
+};
+
+export const githubMarketImpact = {
+  'CI/CD Market Share': 34,
+  'Package Registry': 28,
+  'IDE Market': 15,
+  'AI Coding': 67
+};
+
 ## Introduction
 
 The DevOps tools landscape of 2025 looks like a battlefield after a war. Major players have fallen, consolidation has reached a fever pitch, and enterprises are desperately trying to escape the tool sprawl that's costing them millions. What started as a Cambrian explosion of innovation has become a graveyard of failed startups, abandoned open-source projects, and desperate acquisition attempts.
@@ -30,52 +54,60 @@ Major deals that reshaped the landscape:
 └── Cisco acquires Isovalent: $500M (eBPF/Cilium)
 
 Total M&A Value: $78.4 billion
-Independent Tools Remaining: <30% of 2023 landscape
+Independent Tools Remaining: Less than 30% of 2023 landscape
 ```
 
 ### The HashiCorp Bombshell
 
 Inside the acquisition that changed everything:
 
-```python
-# Why HashiCorp sold
-hashicorp_crisis = {
-    'stock_price': -73,  # % decline from peak
-    'license_backlash': 'BSL killed community trust',
-    'opentofu_threat': 'Fork gaining momentum',
-    'revenue_growth': 'Slowing dramatically',
-    'enterprise_pressure': 'Single vendor demand'
-}
+<DataVisualization 
+  type="stats" 
+  data={hashicorpCrisis} 
+  title="Why HashiCorp Sold"
+  className="mb-6"
+/>
 
-# IBM's strategy
-ibm_plan = {
-    'integrate_with': ['Red Hat', 'OpenShift', 'Cloud Paks'],
-    'enterprise_bundle': 'One throat to choke',
-    'price_increase': 'Already happening',
-    'oss_strategy': 'Minimal investment'
-}
+### IBM's Strategy:
+- **Integration targets**: Red Hat, OpenShift, Cloud Paks
+- **Enterprise bundle**: "One throat to choke"
+- **Price increase**: Already happening
+- **OSS strategy**: Minimal investment
 
-# Community reaction
-terraform_users = "Accelerating OpenTofu migration"
-```
+**Community reaction**: Accelerating OpenTofu migration
 
 ### The Bankruptcy Bloodbath
 
 Notable failures in 2024-2025:
 
 **CircleCI: The Stunning Collapse**
-```yaml
-what_killed_circleci:
-  competition: "GitHub Actions ate their lunch"
-  pricing: "Couldn't compete with free"
-  security_breach: "2023 hack destroyed trust"
-  final_blow: "Mass customer exodus"
-  
-aftermath:
-  assets: "Acquired by JFrog for $45M"
-  original_valuation: "$1.7B in 2021
-  loss: "97% value destruction"
-```
+
+export const whatKilledCircleCI = {
+  'Competition': 'GitHub Actions ate their lunch',
+  'Pricing': "Couldn't compete with free",
+  'Security Breach': '2023 hack destroyed trust',
+  'Final Blow': 'Mass customer exodus'
+};
+
+export const circleciAftermath = {
+  'Assets': 'Acquired by JFrog for $45M',
+  'Original Valuation': '$1.7B in 2021',
+  'Loss': '97% value destruction'
+};
+
+<DataVisualization 
+  type="stats" 
+  data={whatKilledCircleCI} 
+  title="What Killed CircleCI"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={circleciAftermath} 
+  title="Aftermath"
+  className="mb-6"
+/>
 
 **Other Casualties:**
 - **Codefresh**: Ran out of runway, assets to GitLab
@@ -113,57 +145,64 @@ enterprise_devops_tools = {
 
 What tool sprawl really costs:
 
-```python
-def calculate_tool_sprawl_cost(num_tools):
-    costs = {
-        # Direct costs
-        'licensing': num_tools * 35000,  # Average per tool
-        'infrastructure': num_tools * 8000,  # Running the tools
-        
-        # Hidden costs
-        'integration_maintenance': num_tools ** 1.5 * 5000,
-        'training': num_tools * 15000,
-        'context_switching': num_tools * 20000,
-        'security_audits': num_tools * 10000,
-        'vendor_management': num_tools * 5000,
-        
-        # Opportunity costs
-        'delayed_features': 500000,
-        'engineer_frustration': 'Priceless'
-    }
-    
-    return sum(v for v in costs.values() if isinstance(v, int))
+<DataVisualization 
+  type="bar" 
+  data={devopsCosts} 
+  title="Annual DevOps Tool Costs (50-tool stack)"
+  className="mb-6"
+/>
 
-# 50 tools = $5.3M/year in total costs
-```
+### Cost Calculation Breakdown:
+- **Direct costs**: Licensing ($35K/tool) + Infrastructure ($8K/tool)
+- **Hidden costs**: Integration maintenance, training, context switching
+- **Security audits**: $10K per tool annually
+- **Vendor management**: $5K per tool overhead
+- **Opportunity costs**: $500K in delayed features
+- **Engineer frustration**: Priceless
+
+**Total for 50 tools: $5.3M/year**
 
 ### The Integration Hell
 
 Real integration scenarios:
 
-```yaml
-# Simple task: Deploy code change
-actual_tool_chain:
-  1. Developer pushes to GitHub
-  2. GitHub webhook triggers Jenkins
-  3. Jenkins pulls from Artifactory
-  4. Runs tests in Selenium Grid
-  5. Security scan with Snyk
-  6. Quality gate in SonarQube
-  7. Build Docker image
-  8. Push to Harbor registry
-  9. Update Helm chart in Git
-  10. ArgoCD detects change
-  11. Deploys to Kubernetes
-  12. Datadog starts monitoring
-  13. Splunk ingests logs
-  14. PagerDuty on standby
-  15. Slack notifications everywhere
+export const actualToolChain = {
+  'Step 1': 'Developer pushes to GitHub',
+  'Step 2': 'GitHub webhook triggers Jenkins',
+  'Step 3': 'Jenkins pulls from Artifactory',
+  'Step 4': 'Runs tests in Selenium Grid',
+  'Step 5': 'Security scan with Snyk',
+  'Step 6': 'Quality gate in SonarQube',
+  'Step 7': 'Build Docker image',
+  'Step 8': 'Push to Harbor registry',
+  'Step 9': 'Update Helm chart in Git',
+  'Step 10': 'ArgoCD detects change',
+  'Step 11': 'Deploys to Kubernetes',
+  'Step 12': 'Datadog starts monitoring',
+  'Step 13': 'Splunk ingests logs',
+  'Step 14': 'PagerDuty on standby',
+  'Step 15': 'Slack notifications everywhere'
+};
 
-Points of failure: 15
-Integration code: 10,000+ lines
-Time to debug issues: Hours
-```
+export const integrationComplexity = {
+  'Points of Failure': '15',
+  'Integration Code': '10,000+ lines',
+  'Time to Debug': 'Hours'
+};
+
+<DataVisualization 
+  type="process" 
+  data={actualToolChain} 
+  title="Simple Task: Deploy Code Change"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={integrationComplexity} 
+  title="Integration Reality"
+  className="mb-6"
+/>
 
 ## The Platform Convergence
 
@@ -172,20 +211,19 @@ Time to debug issues: Hours
 Who's thriving in consolidation:
 
 **GitHub: The Octopus Strategy**
-```python
-github_dominance = {
-    'core': 'Source control',
-    'acquired': ['npm', 'Dependabot', 'Semmle'],
-    'built': ['Actions', 'Packages', 'Codespaces', 'Copilot'],
-    'strategy': 'Everything in one place',
-    
-    'market_impact': {
-        'ci_cd_market_share': '34%',  # Via Actions
-        'package_registry': '28%',     # Via Packages
-        'ide_market': '15%',           # Via Codespaces
-        'ai_coding': '67%'             # Via Copilot
-    }
-}
+
+<DataVisualization 
+  type="pie" 
+  data={githubMarketImpact} 
+  title="GitHub's Market Impact Across DevOps"
+  className="mb-6"
+/>
+
+**Growth Strategy:**
+- **Core**: Source control dominance
+- **Acquired**: npm, Dependabot, Semmle
+- **Built**: Actions, Packages, Codespaces, Copilot
+- **Philosophy**: Everything in one place
 
 # Result: Killing standalone tools
 ```
@@ -583,7 +621,7 @@ Where DevOps tools are heading:
 devops_stack_2027:
   platforms: 2  # Primary and backup
   specialized_tools: 5-8  # Security, testing, etc.
-  total_tools: <10  # From 50+
+  total_tools: "Less than 10 (from 50+)"
   integration_effort: "Minimal"
   context_switching: "Rare"
   cost: "50% of 2023

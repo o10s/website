@@ -7,6 +7,40 @@ author: 'Olivier Alves'
 
 ---
 
+import DataVisualization from '~/components/DataVisualization.astro';
+
+export const repatriationStats = {
+  'Actively Repatriating': '37%',
+  'Considering Repatriation': '52%',
+  'Workloads Moved Back': '2.3M',
+  'Annual Spend Shifted': '$47B',
+  'Average Savings': '63%',
+  'Satisfaction Rate': '89%'
+};
+
+export const repatriationBySize = {
+  'Fortune 500': 43,
+  'Mid-Market': 31,
+  'Startups': 12,
+  'Government': 67
+};
+
+export const awsCosts2024 = {
+  'Compute (EC2)': '$2.4M',
+  'Storage (S3, EBS)': '$890K',
+  'Networking': '$1.2M',
+  'Databases': '$1.8M',
+  'Support': '$400K',
+  'Hidden Costs': '$980K'
+};
+
+export const onPremCosts = {
+  'Hardware (Amortized)': '$400K/yr',
+  'Colocation': '$360K/yr',
+  'Bandwidth': '$120K/yr',
+  'Additional Staff': '$400K/yr'
+};
+
 ## Introduction
 
 The unthinkable is happening. After a decade of "cloud-first" mantras and digital transformation initiatives, companies are bringing their workloads back on-premises. The cloud repatriation movement, once dismissed as contrarian nonsense, has become a C-suite priority. In 2025, 37% of enterprises have repatriated at least some workloads from public clouds, with 15% planning complete exits within three years.
@@ -19,51 +53,41 @@ This investigation reveals the brutal economics driving the exodus, exposes the 
 
 Who's leaving and how much:
 
-```
-Cloud Repatriation Statistics (2025):
-├── Actively Repatriating: 37% of enterprises
-├── Considering Repatriation: 52%
-├── Workloads Moved Back: 2.3 million
-├── Annual Spend Shifted: $47 billion
-├── Average Savings: 63%
-└── Satisfaction Rate: 89%
+<DataVisualization 
+  type="stats" 
+  data={repatriationStats} 
+  title="Cloud Repatriation Statistics (2025)"
+  className="mb-6"
+/>
 
-By Company Size:
-├── Fortune 500: 43% repatriating
-├── Mid-Market: 31% repatriating
-├── Startups: 12% repatriating
-└── Government: 67% repatriating
-```
+<DataVisualization 
+  type="bar" 
+  data={repatriationBySize} 
+  title="Repatriation by Company Size"
+  className="mb-6"
+/>
 
 ### The Cost Reality
 
 Real companies, real numbers:
 
 **Software Company A:**
-```python
-# Cloud costs that triggered repatriation
-aws_costs_2024 = {
-    'compute': 2_400_000,      # EC2 instances
-    'storage': 890_000,        # S3, EBS
-    'networking': 1_200_000,   # Data transfer
-    'databases': 1_800_000,    # RDS, DynamoDB
-    'support': 400_000,        # Enterprise support
-    'hidden_costs': 980_000,   # NAT gateways, etc.
-}
-total_annual = sum(aws_costs_2024.values())  # $7.67M
 
-# On-premises equivalent
-on_prem_costs = {
-    'hardware': 2_000_000,     # One-time (amortized)
-    'colocation': 360_000,     # Annual
-    'bandwidth': 120_000,      # Annual
-    'staff': 400_000,          # 2 additional engineers
-}
-annual_cost = 880_000  # After hardware amortization
+<DataVisualization 
+  type="pie" 
+  data={awsCosts2024} 
+  title="Annual AWS Costs - Total: $7.67M"
+  className="mb-6"
+/>
 
-savings = (total_annual - annual_cost) / total_annual
-# 88.5% cost reduction
-```
+<DataVisualization 
+  type="bar" 
+  data={onPremCosts} 
+  title="On-Premises Annual Costs - Total: $1.28M"
+  className="mb-6"
+/>
+
+**Result: 88.5% cost reduction ($6.39M annual savings)**
 
 ## The 37signals Bombshell
 

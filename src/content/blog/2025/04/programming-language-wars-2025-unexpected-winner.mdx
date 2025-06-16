@@ -7,6 +7,31 @@ author: 'Olivier Alves'
 
 ---
 
+import DataVisualization from '~/components/DataVisualization.astro';
+
+export const projectLanguageShare = {
+  'TypeScript': 42,
+  'Python': 23,
+  'Go': 14,
+  'Java': 8,
+  'Rust': 4,
+  'JavaScript': 3,
+  'C#': 3,
+  'Others': 3
+};
+
+export const repoGrowth = {
+  'TypeScript': '2.8M new repos',
+  'Go': '567K new repos',
+  'Rust': '89K new repos'
+};
+
+export const growthRates = {
+  'TypeScript': 73,
+  'Go': 31,
+  'Rust': 12
+};
+
 ## Introduction
 
 The programming language wars of 2025 have taken a surprising turn. While tech Twitter debates Rust's memory safety versus Go's simplicity, and academics tout functional programming's superiority, a different reality has emerged in the trenches of software development. TypeScript—yes, JavaScript's typed cousin—has quietly become the dominant force in new project starts, commanding a staggering 42% market share. Meanwhile, Rust, despite years of "most loved language" awards, struggles with real-world adoption, and Go has carved out an unassailable position in cloud infrastructure.
@@ -19,46 +44,49 @@ This investigation cuts through the hype, revealing what languages developers ac
 
 The numbers that silence debate:
 
-```
-New Project Language Selection (2025):
-├── TypeScript: 42% (+15% from 2023)
-├── Python: 23% (-5% from 2023)
-├── Go: 14% (+3% from 2023)
-├── Java: 8% (-7% from 2023)
-├── Rust: 4% (+1% from 2023)
-├── JavaScript: 3% (-8% from 2023)
-├── C#: 3% (stable)
-├── Others: 3% (combined)
+<DataVisualization 
+  type="pie" 
+  data={projectLanguageShare} 
+  title="New Project Language Selection (2025)"
+  className="mb-6"
+/>
 
-The Surprise: TypeScript eating everything
-```
+**Changes from 2023:**
+- TypeScript: +15% 📈
+- Python: -5% 📉
+- Go: +3% 📈
+- Java: -7% 📉
+- Rust: +1% 📈
+- JavaScript: -8% 📉
+- C#: stable
+- Others: combined 3%
+
+**The Surprise: TypeScript eating everything**
 
 ### The GitHub Truth
 
 Repository creation tells the real story:
 
-```python
-# GitHub new repository analysis (Q1 2025)
-language_growth = {
-    'TypeScript': {
-        'new_repos': 2_847_291,
-        'growth_rate': '73%',
-        'dominant_domains': ['web', 'backend', 'cli', 'mobile']
-    },
-    'Rust': {
-        'new_repos': 89_432,
-        'growth_rate': '12%',
-        'dominant_domains': ['systems', 'blockchain', 'wasm']
-    },
-    'Go': {
-        'new_repos': 567_891,
-        'growth_rate': '31%',
-        'dominant_domains': ['cloud', 'devops', 'microservices']
-    }
-}
+<DataVisualization 
+  type="stats" 
+  data={repoGrowth} 
+  title="GitHub New Repositories (Q1 2025)"
+  className="mb-6"
+/>
 
-# Reality: TypeScript creates 31x more repos than Rust
-```
+<DataVisualization 
+  type="bar" 
+  data={growthRates} 
+  title="Year-over-Year Growth Rate"
+  className="mb-6"
+/>
+
+**Dominant Domains:**
+- **TypeScript**: Web, backend, CLI tools, mobile apps
+- **Go**: Cloud infrastructure, DevOps, microservices
+- **Rust**: Systems programming, blockchain, WebAssembly
+
+**Reality: TypeScript creates 31x more repos than Rust**
 
 ## TypeScript: The Unexpected Emperor
 

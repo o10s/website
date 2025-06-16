@@ -7,6 +7,42 @@ author: 'Olivier Alves'
 
 ---
 
+import DataVisualization from '~/components/DataVisualization.astro';
+
+export const marketShare = {
+  'GitHub Copilot': 42,
+  'Cursor': 22,
+  'Amazon CodeWhisperer': 10,
+  'Tabnine': 6,
+  'Others': 20
+};
+
+export const copilotStats = {
+  'Total Users': '15M',
+  'Retention Rate': '67%',
+  'Enterprise Adoption': '78%'
+};
+
+export const cursorStats = {
+  'Total Users': '8M',
+  'Retention Rate': '71%',
+  'YoY Growth': '400%'
+};
+
+export const juniorPerspective = {
+  'Productivity': '+200%',
+  'Learning': 'Accelerated',
+  'Confidence': 'Much higher',
+  'Attitude': 'AI is amazing!'
+};
+
+export const seniorPerspective = {
+  'Productivity': '+20%',
+  'Code Quality': 'Concerned',
+  'Job Security': 'Not worried',
+  'Attitude': 'Useful but dangerous'
+};
+
 ## Introduction
 
 One year ago, AI code generation was going to replace programmers. GitHub Copilot had 2 million users, venture capitalists were throwing money at anything with "AI" and "code" in the pitch deck, and tech influencers proclaimed the death of programming as we knew it. Today, the reality is far more complex. While AI has fundamentally changed how many developers work, it's also created new problems, security nightmares, and a backlash that nobody predicted.
@@ -19,66 +55,78 @@ This investigation cuts through the hype to reveal what actually happened when m
 
 Who's actually using what:
 
-```python
-# AI Code Generation Market Share (2025)
-market_share = {
-    'GitHub Copilot': {
-        'users': 15_000_000,
-        'market_share': '42%',
-        'retention_rate': '67%',
-        'enterprise_adoption': '78%'
-    },
-    'Cursor': {
-        'users': 8_000_000,
-        'market_share': '22%',
-        'retention_rate': '71%',
-        'growth': '400% YoY'
-    },
-    'Amazon CodeWhisperer': {
-        'users': 3_500_000,
-        'market_share': '10%',
-        'retention_rate': '45%',
-        'note': 'Free tier driving adoption'
-    },
-    'Tabnine': {
-        'users': 2_000_000,
-        'market_share': '6%',
-        'focus': 'Enterprise/on-premises'
-    },
-    'Others': '20%'  # Replit, Cody, etc.
-}
+<DataVisualization 
+  type="pie" 
+  data={marketShare} 
+  title="AI Code Generation Market Share 2025"
+  className="mb-6"
+/>
 
-# The surprise: 40% of developers NOT using any AI
-```
+### Top Players Statistics:
+
+<DataVisualization 
+  type="stats" 
+  data={copilotStats} 
+  title="GitHub Copilot"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={cursorStats} 
+  title="Cursor"
+  className="mb-6"
+/>
+
+**Key insights:**
+- Amazon CodeWhisperer: 3.5M users (45% retention) - free tier driving adoption
+- Tabnine: 2M users focused on enterprise/on-premises solutions
+- **The surprise: 40% of developers NOT using any AI tools**
 
 ### The Productivity Reality
 
 Real metrics from real companies:
 
-```yaml
-productivity_impact_study:
-  participants: 10,000 developers
-  duration: 12 months
-  
-  results:
-    code_written:
-      increase: "+47%"  # Lines of code
-      quality: "-23%"   # Bug rate increase
-      
-    time_saved:
-      boilerplate: "78% reduction"
-      algorithms: "31% reduction"
-      debugging: "-15% (got worse)"
-      
-    developer_satisfaction:
-      junior_devs: "92% positive"
-      senior_devs: "41% positive"
-      architects: "23% positive"
-      
-  surprising_finding: |
-    "Developers write more code but 
-     solve fewer problems"
-```
+export const productivityStudyResults = {
+  'Code Written': '+47% (lines of code)',
+  'Quality': '-23% (bug rate increase)',
+  'Time Saved - Boilerplate': '78% reduction',
+  'Time Saved - Algorithms': '31% reduction',
+  'Time Saved - Debugging': '-15% (got worse)'
+};
+
+export const developerSatisfaction = {
+  'Junior Devs': '92% positive',
+  'Senior Devs': '41% positive',
+  'Architects': '23% positive'
+};
+
+export const productivityStudyMeta = {
+  'Participants': '10,000 developers',
+  'Duration': '12 months',
+  'Key Finding': 'Developers write more code but solve fewer problems'
+};
+
+<DataVisualization 
+  type="bar" 
+  data={productivityStudyResults} 
+  title="Productivity Impact Study Results"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="bar" 
+  data={developerSatisfaction} 
+  title="Developer Satisfaction by Experience Level"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={productivityStudyMeta} 
+  title="Study Overview"
+  className="mb-6"
+/>
 
 ## What Actually Worked
 
@@ -384,29 +432,31 @@ legal_issues = {
 
 The experience gap:
 
-```python
-# Junior Developer (2 years experience)
-junior_perspective = {
-    'productivity': '+200%',
-    'learning': 'Accelerated',
-    'confidence': 'Much higher',
-    'attitude': 'AI is amazing!',
-    
-    'quote': "I can build features that would have taken weeks"
-}
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+  <div>
+    <DataVisualization 
+      type="stats" 
+      data={juniorPerspective} 
+      title="Junior Developer (2 years experience)"
+    />
+    <p className="mt-4 italic text-gray-600 dark:text-gray-400">
+      "I can build features that would have taken weeks"
+    </p>
+  </div>
 
-# Senior Developer (15 years experience)  
-senior_perspective = {
-    'productivity': '+20%',
-    'code_quality': 'Concerned',
-    'job_security': 'Not worried',
-    'attitude': 'Useful but dangerous',
-    
-    'quote': "Juniors using AI without understanding is terrifying"
-}
+  <div>
+    <DataVisualization 
+      type="stats" 
+      data={seniorPerspective} 
+      title="Senior Developer (15 years experience)"
+    />
+    <p className="mt-4 italic text-gray-600 dark:text-gray-400">
+      "Juniors using AI without understanding is terrifying"
+    </p>
+  </div>
+</div>
 
-# The divide is creating two classes of developers
-```
+**The divide is creating two classes of developers**
 
 ### The Skills Atrophy Concern
 

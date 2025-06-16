@@ -7,6 +7,8 @@ author: 'Olivier Alves'
 
 ---
 
+import DataVisualization from '~/components/DataVisualization.astro';
+
 ## Introduction
 
 Microservices were supposed to be the answer to all our architectural problems. Independent deployments, technology diversity, team autonomy, infinite scalability—what could go wrong? As it turns out, quite a lot. In 2025, we're witnessing a remarkable reversal: companies that once bragged about their thousands of microservices are quietly consolidating them. Some are even returning to monoliths, though they're calling them "modular monoliths" to save face.
@@ -36,34 +38,59 @@ Typical Enterprise Journey:
 Real costs from real companies:
 
 **Case Study: E-Commerce Platform**
-```python
-# Microservices architecture costs (2025)
-costs = {
-    'infrastructure': {
-        'compute': 2_400_000,  # 3000 containers running
-        'networking': 800_000,  # Inter-service communication
-        'storage': 600_000,    # Logs, metrics for all services
-        'monitoring': 500_000,  # APM tools for visibility
-    },
-    'development': {
-        'coordination': 3_200_000,  # Time spent in meetings
-        'debugging': 2_800_000,     # Distributed system issues
-        'deployment': 1_500_000,    # Complex CI/CD
-        'documentation': 800_000,   # Keeping track of everything
-    },
-    'operational': {
-        'on_call': 1_200_000,      # 24/7 coverage needed
-        'incidents': 2_000_000,     # Cost of outages
-        'security': 1_500_000,      # Securing all services
-    }
-}
+export const infrastructureCosts = {
+  'Compute': '$2,400,000',
+  'Networking': '$800,000',
+  'Storage': '$600,000',
+  'Monitoring': '$500,000'
+};
 
-total_annual_cost = sum(sum(v.values()) for v in costs.values())
-# $17.3 million/year
+export const developmentCosts = {
+  'Coordination': '$3,200,000',
+  'Debugging': '$2,800,000',
+  'Deployment': '$1,500,000',
+  'Documentation': '$800,000'
+};
 
-# Same functionality as monolith: $3.2 million/year
-# Overhead: 441%
-```
+export const operationalCosts = {
+  'On-call': '$1,200,000',
+  'Incidents': '$2,000,000',
+  'Security': '$1,500,000'
+};
+
+export const costComparison = {
+  'Microservices Total': '$17.3 million/year',
+  'Monolith Equivalent': '$3.2 million/year',
+  'Overhead': '441%'
+};
+
+<DataVisualization 
+  type="bar" 
+  data={infrastructureCosts} 
+  title="Infrastructure Costs (Annual)"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="bar" 
+  data={developmentCosts} 
+  title="Development Costs (Annual)"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="bar" 
+  data={operationalCosts} 
+  title="Operational Costs (Annual)"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={costComparison} 
+  title="Total Cost Comparison"
+  className="mb-6"
+/>
 
 ## The Distributed Systems Tax
 
@@ -138,34 +165,63 @@ Same bug in monolith: 2 hours
 
 What deploying actually looks like:
 
-```yaml
-# Simple change: Update user profile feature
-# Monolith deployment:
-git push && deploy
+export const deploymentComparison = {
+  'Monolith': 'git push && deploy',
+  'Microservices': '3-hour process with 5 engineers'
+};
 
-# Microservices deployment:
-services_to_update:
-  - user-service: v2.3.1
-  - profile-service: v1.8.0
-  - notification-service: v3.2.1
-  - event-service: v2.1.0
-  - cache-service: v4.0.2
+export const servicesToUpdate = {
+  'user-service': 'v2.3.1',
+  'profile-service': 'v1.8.0',
+  'notification-service': 'v3.2.1',
+  'event-service': 'v2.1.0',
+  'cache-service': 'v4.0.2'
+};
 
-deployment_order_matters:
-  1: cache-service  # Must go first
-  2: user-service   # Depends on cache
-  3: profile-service # Depends on user
-  4: notification-service # Can go anytime
-  5: event-service  # Must go last
+export const deploymentOrder = {
+  'Step 1': 'cache-service (Must go first)',
+  'Step 2': 'user-service (Depends on cache)',
+  'Step 3': 'profile-service (Depends on user)',
+  'Step 4': 'notification-service (Can go anytime)',
+  'Step 5': 'event-service (Must go last)'
+};
 
-rollback_plan:
-  - "If user-service fails, stop everything"
-  - "If profile-service fails, rollback user-service too"
-  - "If notification fails, continue but alert"
-  - "Monitor for 2 hours before declaring success"
+export const rollbackComplexity = {
+  'User Service Fails': 'Stop everything',
+  'Profile Service Fails': 'Rollback user-service too',
+  'Notification Fails': 'Continue but alert',
+  'Monitoring Period': '2 hours before success',
+  'Total Time': '3+ hours',
+  'Engineers Required': '5'
+};
 
-# Actual deployment: 3-hour process with 5 engineers
-```
+<DataVisualization 
+  type="bar" 
+  data={deploymentComparison} 
+  title="Deployment Complexity Comparison"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={servicesToUpdate} 
+  title="Services to Update for Simple Feature Change"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="process" 
+  data={deploymentOrder} 
+  title="Critical Deployment Order"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={rollbackComplexity} 
+  title="Rollback Plan Complexity"
+  className="mb-6"
+/>
 
 ## The Human Cost
 
@@ -257,28 +313,44 @@ Industry Reaction: "If Amazon can't make it work..."
 Who's consolidating and why:
 
 **Major Retailer:**
-```python
-# Service consolidation project
-consolidation_plan = {
-    'phase_1': {
-        'from': ['user-service', 'profile-service', 'preferences-service',
-                 'settings-service', 'avatar-service'],
-        'to': 'customer-service',
-        'result': '5 services → 1 service'
-    },
-    'phase_2': {
-        'from': ['product-service', 'catalog-service', 'inventory-service',
-                 'pricing-service', 'discount-service'],
-        'to': 'commerce-service',
-        'result': '5 services → 1 service'
-    },
-    'savings': {
-        'infrastructure': '60% reduction',
-        'operational': '70% reduction',
-        'development_time': '50% improvement'
-    }
-}
-```
+export const phase1Consolidation = {
+  'From Services': 'user, profile, preferences, settings, avatar',
+  'To Service': 'customer-service',
+  'Result': '5 services → 1 service'
+};
+
+export const phase2Consolidation = {
+  'From Services': 'product, catalog, inventory, pricing, discount',
+  'To Service': 'commerce-service',
+  'Result': '5 services → 1 service'
+};
+
+export const consolidationSavings = {
+  'Infrastructure': '60% reduction',
+  'Operational': '70% reduction',
+  'Development Time': '50% improvement'
+};
+
+<DataVisualization 
+  type="stats" 
+  data={phase1Consolidation} 
+  title="Phase 1: Customer Service Consolidation"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={phase2Consolidation} 
+  title="Phase 2: Commerce Service Consolidation"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="bar" 
+  data={consolidationSavings} 
+  title="Consolidation Benefits"
+  className="mb-6"
+/>
 
 **Social Media Platform:**
 - 2023: 1,200 microservices

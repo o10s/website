@@ -7,6 +7,8 @@ author: 'Olivier Alves'
 
 ---
 
+import DataVisualization from '~/components/DataVisualization.astro';
+
 ## Introduction
 
 Kubernetes has won the container orchestration war, but at what cost? A shocking new analysis reveals that organizations collectively waste over $1 trillion annually on inefficient Kubernetes deployments. While executives celebrate their "cloud-native transformation," finance teams are discovering that their Kubernetes clusters are burning through budgets faster than cryptocurrency mining operations.
@@ -58,26 +60,50 @@ Kubernetes Cost Breakdown (Average Enterprise):
 Organizations migrated to Kubernetes without rearchitecting:
 
 **Case Study: Major Retailer**
-```yaml
-# Legacy VM deployment
-vm_config:
-  cpus: 16
-  memory: 64GB
-  utilization: 20%
-  monthly_cost: $800
 
-# Naive Kubernetes migration
-kubernetes_deployment:
-  replicas: 3
-  resources:
-    requests:
-      cpu: 16
-      memory: 64Gi
-  actual_usage:
-    cpu: 0.8
-    memory: 4Gi
-  monthly_cost: $2,400  # 3x increase for same workload!
-```
+export const vmDeployment = {
+  'CPUs': '16 cores',
+  'Memory': '64 GB',
+  'Utilization': '20%',
+  'Monthly Cost': '$800'
+};
+
+export const kubernetesDeployment = {
+  'Replicas': '3',
+  'CPU Requests': '16 cores × 3 = 48 cores',
+  'Memory Requests': '64 GB × 3 = 192 GB',
+  'Actual CPU Usage': '0.8 cores total',
+  'Actual Memory Usage': '4 GB total',
+  'Monthly Cost': '$2,400'
+};
+
+export const costComparison = {
+  'Legacy VM': '$800/month',
+  'Kubernetes': '$2,400/month',
+  'Cost Increase': '3x',
+  'Resource Waste': '95%'
+};
+
+<DataVisualization 
+  type="stats" 
+  data={vmDeployment} 
+  title="Legacy VM Deployment"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={kubernetesDeployment} 
+  title="Naive Kubernetes Migration"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="bar" 
+  data={costComparison} 
+  title="Cost Impact: 3x Increase for Same Workload!"
+  className="mb-6"
+/>
 
 ### Factor 2: The Fear-Driven Overprovisioning
 

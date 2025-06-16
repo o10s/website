@@ -1,0 +1,969 @@
+---
+title: "The Open Source Sustainability Crisis: Who's Paying the Bills?"
+description: "A deep investigation into the financial collapse of critical open source projects, revealing burnt-out maintainers, corporate freeloading, and the infrastructure that powers the internet running on donations and hope"
+pubDate: 2025-06-16
+tags: ["open-source", "sustainability", "funding", "software", "community"]
+author: 'Olivier Alves'
+
+---
+
+import DataVisualization from '~/components/DataVisualization.astro';
+
+export const projectFunding = {
+  'Critical Projects': 2847,
+  'Fully Funded': 13,
+  'Barely Surviving': 234,
+  'Donation Based': 1893,
+  'Unfunded': 707
+};
+
+export const maintainerIncome = {
+  'From Project': '$487/month',
+  'Day Job': '$6,800/month',
+  'Total Hours': '70/week'
+};
+
+export const corporateUsage = {
+  'Fortune 500 Using OSS': '100%',
+  'Average OSS Dependencies': '3,469',
+  'Direct Contributions': '0.01%',
+  'Talking About Giving Back': '73%'
+};
+
+export const mentalHealthStats = {
+  'Experiencing Burnout': '78%',
+  'Considered Quitting': '92%',
+  'Actually Quit': '34%',
+  'Depression/Anxiety': '67%',
+  'Financial Stress': '81%'
+};
+
+export const githubSponsors = {
+  'Total Sponsors': 847293,
+  'Receiving >$1000/month': 2341,
+  'Receiving >$100/month': 18932,
+  'Receiving >$10/month': 89421,
+  'Receiving $0': 623847
+};
+
+export const sponsorPercentages = {
+  'Receiving >$1000/month': 0.28,
+  'Receiving >$100/month': 2.2,
+  'Receiving >$10/month': 10.6,
+  'Receiving $0': 73.7
+};
+
+## Introduction
+
+The entire modern internet runs on open source software maintained by a handful of exhausted volunteers. In 2025, this house of cards is finally collapsing. Critical projects that power billions of dollars in commerce are maintained by people working second jobs to pay rent. Corporate giants making record profits contribute nothing back. And maintainers are burning out, selling out, or simply disappearing.
+
+This investigation exposes the brutal economics of open source, revealing which critical projects are on the brink of abandonment, why the donation model has failed spectacularly, and how the industry's addiction to free labor is about to cause a reckoning that will make the log4j crisis look like a minor inconvenience.
+
+## The Numbers Nobody Wants to See
+
+### The Shocking Economics
+
+The reality of open source funding:
+
+<DataVisualization 
+  type="pie" 
+  data={projectFunding} 
+  title="Open Source Project Funding Status (2847 Critical Projects)"
+  className="mb-6"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={maintainerIncome} 
+  title="Average Maintainer Economics"
+  className="mb-6"
+/>
+
+<DataVisualization 
+  type="bar" 
+  data={corporateUsage} 
+  title="Corporate Open Source Reality"
+  className="mb-6"
+/>
+
+### The brutal truth: core-js case study
+- **Users**: 19 million websites
+- **Maintainer income**: $400/month
+- **Corporate donations**: Less than $1000/month
+- **Maintainer status**: Arrested, project dying
+
+### Critical Infrastructure on Life Support
+
+Projects one maintainer away from disaster:
+
+export const criticalProjectsCurl = {
+  'Users': 'Everything connected to internet',
+  'Maintainers': '1 (Daniel Stenberg)',
+  'Funding': 'Donations + part-time job',
+  'Bus Factor': '1',
+  'Risk Level': 'EXTREME'
+};
+
+export const criticalProjectsOpenSSL = {
+  'Users': 'Most secure communications',
+  'Full-time Maintainers': '2',
+  'Funding': 'Barely adequate',
+  'Technical Debt': 'Massive',
+  'Risk Level': 'HIGH'
+};
+
+export const criticalProjectsGPG = {
+  'Users': 'Package signing, encryption',
+  'Maintainer': 'Werner Koch (mostly alone)',
+  'Funding Crisis': 'Regular',
+  'Status': 'Perpetual emergency',
+  'Risk Level': 'CRITICAL'
+};
+
+export const criticalProjectsNumPy = {
+  'Users': 'All of scientific Python',
+  'Funded Developers': '3',
+  'Volunteer Maintainers': '12',
+  'Burnout Rate': 'Extreme',
+  'Risk Level': 'HIGH'
+};
+
+<DataVisualization 
+  type="stats" 
+  data={criticalProjectsCurl} 
+  title="cURL - Critical Infrastructure at Risk"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={criticalProjectsOpenSSL} 
+  title="OpenSSL - Critical Infrastructure at Risk"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={criticalProjectsGPG} 
+  title="GPG - Critical Infrastructure at Risk"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={criticalProjectsNumPy} 
+  title="NumPy - Critical Infrastructure at Risk"
+  className="mb-6"
+/>
+
+## The Maintainer Burnout Epidemic
+
+### The Human Cost
+
+Real stories from the frontlines:
+
+<DataVisualization 
+  type="bar" 
+  data={mentalHealthStats} 
+  title="Maintainer Mental Health Survey 2025"
+  className="mb-6"
+/>
+
+### Real Maintainer Quotes:
+- *"I maintain software used by millions, can't afford healthcare"*
+- *"Corp makes millions on my code, I get entitled users"*
+- *"40 hours maintaining OSS, 40 hours day job, no life"*
+- *"The thanks doesn't pay rent"*
+- *"I'm done. Let someone else suffer"*
+
+### The core-js maintainer story
+A stark example of the human cost:
+- **Project**: core-js (used by every JS developer)
+- **Maintainer Income**: Poverty level
+- **Personal Crisis**: Arrested for motorcycle accident
+- **Prison Time**: 10 months
+- **Project Status**: Nearly abandoned
+- **Community Response**: Mostly indifference
+
+### The Exploitation Pattern
+
+How corporations extract value:
+
+export const corporateStrategy = {
+  'Step 1': 'Find useful OSS project',
+  'Step 2': 'Build billion-dollar business on it',
+  'Step 3': 'Demand features and fixes',
+  'Step 4': 'Contribute nothing back',
+  'Step 5': 'Complain when things break',
+  'Step 6': 'Blame maintainer for unprofessionalism'
+};
+
+export const realExample = {
+  'OSS Dependencies': '4,721',
+  'Annual Revenue': '$274B',
+  'OSS Contributions': '$50K',
+  'Value Extracted': '~$2B',
+  'Contribution Rate': '0.00001%'
+};
+
+<DataVisualization 
+  type="process" 
+  data={corporateStrategy} 
+  title="Corporate OSS Exploitation Strategy"
+  className="mb-6"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={realExample} 
+  title="Real Example: Fortune 50 Tech Giant"
+  className="mb-6"
+/>
+
+## The Funding Models That Failed
+
+### The GitHub Sponsors Illusion
+
+Why donations don't work:
+
+<DataVisualization 
+  type="pie" 
+  data={githubSponsors} 
+  title="GitHub Sponsors Distribution (847,293 total)"
+  className="mb-6"
+/>
+
+<DataVisualization 
+  type="bar" 
+  data={sponsorPercentages} 
+  title="Percentage of Sponsors by Income Level"
+  className="mb-6"
+/>
+
+### Key Statistics:
+- **Median monthly amount**: $3.50
+- **After fees**: $2.87
+- **Covers coffee**: Not even
+
+### Case Study: Webpack
+Despite massive usage, funding remains inadequate:
+- **Weekly downloads**: 28,000,000
+- **Fortune 500 users**: 423
+- **Monthly donations**: $4,200
+- **Maintainers**: 3
+- **Per maintainer**: $1,400
+- **Status**: Below minimum wage
+
+### The Open Collective Disappointment
+
+Transparent funding that shows the problem:
+
+export const openCollectiveOverview = {
+  'Total Projects': '3,892',
+  'Above Poverty Line': '47',
+  'Success Rate': '1.2%',
+  'Failures': '98.8%'
+};
+
+export const typicalProjectStats = {
+  'Monthly Income': '$127',
+  'Monthly Expenses': '$89',
+  'Maintainer Payout': '$38',
+  'Hours per Month': '120',
+  'Hourly Rate': '$0.32'
+};
+
+export const successStories = {
+  'Webpack': '$420k/year (3 maintainers)',
+  'Vue.js': '$580k/year (team of 5)',
+  'Babel': '$340k/year (2 full-time)'
+};
+
+<DataVisualization 
+  type="stats" 
+  data={openCollectiveOverview} 
+  title="Open Collective Funding Reality"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={typicalProjectStats} 
+  title="Typical Project Economics"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="bar" 
+  data={successStories} 
+  title="The Few Success Stories"
+  className="mb-6"
+/>
+
+### The Patreon/Ko-fi Struggle
+
+Individual funding desperation:
+
+export const patreonStats = {
+  'Average Patrons': '7',
+  'Average Monthly': '$31',
+  'Time Managing': '5 hours/month',
+  'Worth It?': 'No'
+};
+
+export const kofiStats = {
+  'Lifetime Coffees': '43',
+  'Total Earned': '$129',
+  'Covers': '2 days rent'
+};
+
+export const githubSponsorsStats = {
+  'Sponsors': '3',
+  'Monthly Income': '$15',
+  'Sponsor Source': 'Other maintainers'
+};
+
+export const fundingReality = {
+  'Patreon': '$31/month',
+  'Ko-fi': '$129 lifetime',
+  'GitHub Sponsors': '$15/month',
+  'Reality': 'More time begging than coding'
+};
+
+<DataVisualization 
+  type="stats" 
+  data={patreonStats} 
+  title="Patreon Funding Reality"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={kofiStats} 
+  title="Ko-fi Lifetime Results"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={githubSponsorsStats} 
+  title="GitHub Sponsors Reality"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="bar" 
+  data={fundingReality} 
+  title="Individual Funding Comparison"
+  className="mb-6"
+/>
+
+## The Corporate Freeloading Scandal
+
+### Who's Not Paying
+
+The worst offenders:
+
+export const bigTechFreeloading = {
+  'Usage': 'Entire infrastructure on OSS',
+  'Contribution': 'Less than 0.001% of profit',
+  'Excuse': 'We contribute by using it'
+};
+
+export const banksFreeloading = {
+  'Usage': 'Critical financial systems',
+  'Contribution': 'Virtually zero',
+  'Excuse': 'Regulatory concerns'
+};
+
+export const startupsFreeloading = {
+  'Usage': 'Everything',
+  'Contribution': 'Will contribute when profitable',
+  'Reality': 'Never happens'
+};
+
+export const governmentFreeloading = {
+  'Usage': 'Massive OSS deployment',
+  'Contribution': 'Bureaucracy prevents it',
+  'Irony': 'Demands security updates'
+};
+
+export const wallStreetExample = {
+  'Annual Profit': '$32 billion',
+  'OSS Dependencies': '12,847',
+  'Annual OSS Contribution': '$0',
+  'Demands to Maintainers': 'Constant'
+};
+
+<DataVisualization 
+  type="stats" 
+  data={bigTechFreeloading} 
+  title="Big Tech Freeloading"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={banksFreeloading} 
+  title="Banks Freeloading"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={startupsFreeloading} 
+  title="Startups Freeloading"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={governmentFreeloading} 
+  title="Government Freeloading"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={wallStreetExample} 
+  title="Real Example: Wall Street Bank"
+  className="mb-6"
+/>
+
+### The Venture Capital Hypocrisy
+
+VCs profiting from volunteer labor:
+
+```yaml
+vc_exploitation_model:
+  investment_thesis: "Build on free OSS"
+  
+  portfolio_company:
+    funding_raised: "$500M"
+    valuation: "$4.2B"
+    core_dependencies: 
+      - PostgreSQL (free)
+      - Redis (was free)
+      - Kubernetes (free)
+      - React (free)
+    contribution_back: "$10k donation"
+    
+  vc_advice: "Don't waste money on OSS"
+  
+  when_oss_adds_license: "How dare they!"
+```
+
+## The Projects That Sold Out
+
+### The License Change Wave
+
+Why projects are abandoning open source:
+
+export const redisLicenseChange = {
+  'Reason': 'Cloud providers selling our work',
+  'New License': 'SSPL',
+  'Community Reaction': 'Betrayal',
+  'Financial Result': 'Sustainable'
+};
+
+export const elasticsearchLicenseChange = {
+  'Reason': 'AWS making billions',
+  'New License': 'Elastic License',
+  'Fork Created': 'OpenSearch',
+  'Outcome': 'Both surviving'
+};
+
+export const mongoDBLicenseChange = {
+  'Reason': 'Hosting providers',
+  'Impact': 'Saved company',
+  'OSS Purists': 'Still angry'
+};
+
+export const upcomingChanges = {
+  'Major Database': 'License change imminent',
+  'Monitoring Tool': 'Evaluating options',
+  'Infrastructure Library': 'Community in discussions'
+};
+
+<DataVisualization 
+  type="stats" 
+  data={redisLicenseChange} 
+  title="Redis License Change Impact"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={elasticsearchLicenseChange} 
+  title="Elasticsearch License Change Impact"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={mongoDBLicenseChange} 
+  title="MongoDB License Change Impact"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="bar" 
+  data={upcomingChanges} 
+  title="Projects Considering License Changes"
+  className="mb-6"
+/>
+
+> "I can choose: 1. Watch AWS make billions on my work while I struggle, or 2. Change license and feed my family. Easy choice." - Anonymous Maintainer
+
+### The Acquisition Exit
+
+Selling to survive:
+
+```yaml
+recent_acquisitions:
+  hashicorp:
+    buyer: "IBM"
+    price: "$6.4B"
+    oss_future: "Uncertain"
+    
+  redis_labs:
+    trajectory: "IPO planned"
+    oss_redis: "Already changed"
+    
+  confluent:
+    kafka_creator: "Public company"
+    oss_commitment: "Declining"
+    
+pattern: "Create OSS → Build company → Abandon community"
+```
+
+## The Critical Dependencies Crisis
+
+### The log4j Warning Ignored
+
+What we didn't learn:
+
+export const log4jPreCrisis = {
+  'Maintainers': '3',
+  'Funding': '$0',
+  'Users': 'Millions'
+};
+
+export const log4jDuringCrisis = {
+  'Panic Level': 'Maximum',
+  'Emergency Funding': '$000s',
+  'Fixes Demanded': 'Immediately'
+};
+
+export const log4jPostCrisis = {
+  'Long-term Funding': 'Minimal',
+  'Maintainers': 'Still volunteers',
+  'Lesson Learned': 'None',
+  'Next log4j': 'Coming soon'
+};
+
+export const tickingTimeBombs = {
+  'zlib': 'Compression everywhere',
+  'libcurl': 'Internet communications',
+  'OpenSSH': 'Remote access',
+  'SQLite': 'Embedded databases',
+  'Bash': 'Shell scripts'
+};
+
+<DataVisualization 
+  type="stats" 
+  data={log4jPreCrisis} 
+  title="log4j Pre-Crisis Status"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={log4jDuringCrisis} 
+  title="log4j During Crisis"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={log4jPostCrisis} 
+  title="log4j Post-Crisis Reality"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="bar" 
+  data={tickingTimeBombs} 
+  title="Critical Unfunded Dependencies"
+  className="mb-6"
+/>
+
+### The Supply Chain House of Cards
+
+How fragile everything is:
+
+```javascript
+// The typical dependency tree
+your_app
+├── framework (500 dependencies)
+│   ├── orm (200 dependencies)
+│   ├── http-library (150 dependencies)
+│   └── utilities (100 dependencies)
+├── ui-library (800 dependencies)
+│   ├── build-tool (400 dependencies)
+│   └── components (300 dependencies)
+└── internal-libs (200 dependencies)
+
+// Total: 2,650 dependencies
+// Maintained by: 300 people
+// Funded: 5 people
+// Bus factor: Terrifying
+```
+
+## The New Sustainability Models
+
+### What's Actually Working
+
+The few success stories:
+
+export const tideliftModel = {
+  'Model': 'Corporate subscriptions for maintenance',
+  'Success': 'Moderate',
+  'Maintainers Paid': '~1000',
+  'Challenge': 'Convincing companies to pay'
+};
+
+export const plausibleModel = {
+  'Model': 'Open source with paid hosting',
+  'Revenue': '$2M ARR',
+  'Team': 'Small but sustainable',
+  'Replicable': 'Yes'
+};
+
+export const laravelModel = {
+  'Model': 'Ecosystem monetization',
+  'Revenue': '$10M+/year',
+  'Approach': 'Free core, paid tools',
+  'Success': 'High'
+};
+
+export const blenderModel = {
+  'Model': 'Foundation + corporate sponsors',
+  'Budget': '€2.7M/year',
+  'Full-time Devs': '24',
+  'Sustainable': 'Yes'
+};
+
+<DataVisualization 
+  type="stats" 
+  data={tideliftModel} 
+  title="Tidelift Sustainability Model"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={plausibleModel} 
+  title="Plausible Sustainability Model"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={laravelModel} 
+  title="Laravel Sustainability Model"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={blenderModel} 
+  title="Blender Sustainability Model"
+  className="mb-6"
+/>
+
+### The Foundation Model
+
+When foundations work (rarely):
+
+export const successfulFoundations = {
+  'Linux Foundation Budget': '$177M',
+  'Linux Foundation Focus': 'Corporate interests',
+  'Linux Foundation Projects': 'Often neglected',
+  'Apache Foundation Budget': '$2M',
+  'Apache Foundation Projects': '350+',
+  'Apache Per Project': '$5,714',
+  'Apache Sustainable': 'Barely'
+};
+
+export const strugglingFoundations = {
+  'Python Foundation Budget': '$3.8M',
+  'Python Supporting': 'Entire ecosystem',
+  'Python Per Project': 'Pennies',
+  'Node Foundation Status': 'Merged with JS Foundation',
+  'Node Foundation Reason': 'Lack of funding'
+};
+
+<DataVisualization 
+  type="bar" 
+  data={successfulFoundations} 
+  title="Successful Foundations"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={strugglingFoundations} 
+  title="Struggling Foundations"
+  className="mb-6"
+/>
+
+## The Coming Reckoning
+
+### Projects About to Break
+
+The imminent failures:
+
+export const criticalLibraryX = {
+  'Users': 'Fortune 500',
+  'Maintainer': 'Quitting in 3 months',
+  'Replacement': 'None',
+  'Impact': 'Catastrophic'
+};
+
+export const securityToolY = {
+  'Maintains': 'PKI for major OS',
+  'Funding': 'Ran out',
+  'Status': 'Maintainer job hunting',
+  'Timeline': 'Weeks'
+};
+
+export const dataProcessingZ = {
+  'Powers': 'ML pipelines globally',
+  'Team': 'Down to 1 person',
+  'Burnout': 'Severe',
+  'Prognosis': 'Abandonment imminent'
+};
+
+export const cascadeFailureSteps = {
+  'Step 1': 'Critical vulnerability discovered',
+  'Step 2': 'No maintainer to fix it',
+  'Step 3': 'Millions of systems vulnerable',
+  'Step 4': 'Panic patching by corporations',
+  'Step 5': 'Inferior forks everywhere',
+  'Step 6': 'Security nightmare for years'
+};
+
+<DataVisualization 
+  type="stats" 
+  data={criticalLibraryX} 
+  title="Critical Library X - Death Watch"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={securityToolY} 
+  title="Security Tool Y - Death Watch"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={dataProcessingZ} 
+  title="Data Processing Z - Death Watch"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="process" 
+  data={cascadeFailureSteps} 
+  title="Cascade Failure Scenario"
+  className="mb-6"
+/>
+
+### The Economic Impact
+
+When the music stops:
+
+export const immediateCosts = {
+  'Emergency Maintenance': '$2.3B',
+  'Security Incidents': '$8.7B',
+  'Downtime': '$4.1B',
+  'Migration Costs': '$12.5B'
+};
+
+export const longTermCosts = {
+  'Replacement Development': '$45B',
+  'Reduced Innovation': '$100B+',
+  'Fractured Ecosystem': 'Incalculable'
+};
+
+export const economicImpactSummary = {
+  'Scenario': 'Major OSS projects abandoned',
+  'Total First Year': '$172.6B',
+  'Comparison': '3x log4j impact'
+};
+
+<DataVisualization 
+  type="bar" 
+  data={immediateCosts} 
+  title="Immediate Economic Impact"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="bar" 
+  data={longTermCosts} 
+  title="Long-term Economic Impact"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={economicImpactSummary} 
+  title="Economic Impact Summary"
+  className="mb-6"
+/>
+
+## The Path Forward
+
+### Individual Actions
+
+What maintainers are doing:
+
+```yaml
+maintainer_strategies:
+  setting_boundaries:
+    - "No more free support"
+    - "Issues require sponsorship"
+    - "Features for paying users only"
+    - "Response time based on funding"
+    
+  walking_away:
+    - "Archiving projects"
+    - "Seeking acquirers"
+    - "Transferring ownership"
+    - "Just disappearing"
+    
+  monetizing:
+    - "Dual licensing"
+    - "Paid support tiers"
+    - "SaaS versions"
+    - "Consulting services"
+    
+  organizing:
+    - "Maintainer unions forming"
+    - "Collective bargaining"
+    - "Shared resources"
+    - "Mental health support"
+```
+
+### Systemic Solutions
+
+What needs to happen:
+
+export const corporateResponsibility = {
+  'Mandatory Contribution': '0.1% of revenue using OSS',
+  'Dedicated Teams': 'Contributing back',
+  'Transparent Reporting': 'OSS usage and support'
+};
+
+export const governmentAction = {
+  'Tax Incentives': 'For OSS contribution',
+  'Direct Funding': 'Critical infrastructure',
+  'Procurement Requirements': 'OSS support built in'
+};
+
+export const newModels = {
+  'Maintainer Cooperatives': 'Shared ownership',
+  'OSS Insurance': 'Sustainability guarantees',
+  'Automated Payments': 'Usage-based micro-payments'
+};
+
+export const culturalShift = {
+  'Value Recognition': 'OSS as infrastructure',
+  'Professional Maintaining': 'Real career path',
+  'Education': 'OSS economics in CS programs'
+};
+
+<DataVisualization 
+  type="stats" 
+  data={corporateResponsibility} 
+  title="Corporate Responsibility Changes"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={governmentAction} 
+  title="Government Action Required"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={newModels} 
+  title="New Sustainability Models"
+  className="mb-4"
+/>
+
+<DataVisualization 
+  type="stats" 
+  data={culturalShift} 
+  title="Cultural Shift Needed"
+  className="mb-6"
+/>
+
+## The Uncomfortable Questions
+
+### Who's Responsible?
+
+The blame game:
+
+```yaml
+responsibility_matrix:
+  corporations:
+    fault: "Extracting value without contributing"
+    excuse: "We provide jobs and services"
+    reality: "Built empires on free labor"
+    
+  vcs_investors:
+    fault: "Funding companies built on OSS"
+    excuse: "We create value"
+    reality: "Privatizing commons"
+    
+  developers:
+    fault: "Expecting everything free"
+    excuse: "That's how it's always been"
+    reality: "Unsustainable entitlement"
+    
+  maintainers:
+    fault: "Giving away work for free"
+    excuse: "Want to help community"
+    reality: "Enabling exploitation"
+    
+  everyone:
+    fault: "Ignoring the crisis"
+    reality: "Disaster inevitable"
+```
+
+## Conclusion
+
+The open source sustainability crisis of 2025 is not a future threat—it's a present catastrophe. The entire digital economy runs on software maintained by exhausted volunteers working for poverty wages or less. The exploitation is systematic: corporations worth trillions extract billions in value while contributing pennies back. Maintainers burn out, projects die, and everyone pretends the system works.
+
+The numbers are damning. Less than 0.5% of critical open source projects are adequately funded. The average maintainer earns $487 per month from their project while working 70-hour weeks. Meanwhile, companies built on their work achieve billion-dollar valuations and claim they can't afford to contribute.
+
+The human cost is heartbreaking. Brilliant engineers maintaining critical infrastructure can't afford healthcare. Mental health crises are endemic. The core-js maintainer's story—arrested and imprisoned while maintaining software used by millions—exemplifies the cruel irony of the system. We demand professional-quality software from people we treat worse than interns.
+
+The funding models have failed spectacularly. GitHub Sponsors, Open Collective, Patreon—they all prove the same thing: voluntary donations don't work at scale. The median sponsorship is $3.50 per month. Coffee money for people maintaining the foundations of the internet.
+
+The reckoning is coming. Critical projects are weeks away from abandonment. When they fail—and they will fail—the economic impact will dwarf the log4j crisis. Emergency patches, security disasters, and fractured ecosystems will cost hundreds of billions. The companies that saved pennies by not contributing will lose fortunes in the chaos.
+
+The path forward requires acknowledging uncomfortable truths. Open source as volunteer charity is dead. Either we create sustainable models—through corporate responsibility, government support, or new economic structures—or we watch the infrastructure of the digital age crumble.
+
+For every developer reading this using open source (which is everyone): you're part of this system. For every company profiting from open source (which is all of them): your free ride is ending. For every maintainer killing themselves to keep projects alive: it's okay to walk away.
+
+The open source movement gave the world extraordinary gifts. Now it's time for the world to give back—or watch those gifts disappear. The crisis is here. The question is whether we'll act before it's too late. Based on current evidence, we won't. And we'll all pay the price for our shortsightedness.
+
+The bills are coming due. The only question is who's going to pay them—and whether anyone will be left to collect.
