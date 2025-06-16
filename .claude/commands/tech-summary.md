@@ -312,7 +312,7 @@ import { Separator } from '@/components/ui/separator'
 - Ensure the year and month in the filename match the directory structure
 
 ### Side notes
-- Make sure all links you add are clickable
+- Make sure all links you add are clickable and use a small description of the link
 
 ---
 *Note: Replace all placeholder values ({{CURRENT_DATE}}, {{DATE_7_DAYS_AGO}}, {{YEAR}}, {{MONTH}}, {{YYYY-MM-DD}}, {{FORMATTED_DATE}}) with actual values when running the agent.*
