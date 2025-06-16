@@ -9,6 +9,80 @@ author: 'Olivier Alves'
 
 import DataVisualization from '~/components/DataVisualization.astro';
 
+export const infrastructureCosts = {
+  'Compute': '$2,400,000',
+  'Networking': '$800,000',
+  'Storage': '$600,000',
+  'Monitoring': '$500,000'
+};
+
+export const developmentCosts = {
+  'Coordination': '$3,200,000',
+  'Debugging': '$2,800,000',
+  'Deployment': '$1,500,000',
+  'Documentation': '$800,000'
+};
+
+export const operationalCosts = {
+  'On-call': '$1,200,000',
+  'Incidents': '$2,000,000',  
+  'Security': '$1,500,000'
+};
+
+export const costComparison = {
+  'Microservices Total': '$17.3 million/year',
+  'Monolith Equivalent': '$3.2 million/year',
+  'Overhead': '441%'
+};
+
+export const deploymentComparison = {
+  'Monolith': 'git push && deploy',
+  'Microservices': '3-hour process with 5 engineers'
+};
+
+export const servicesToUpdate = {
+  'user-service': 'v2.3.1',
+  'profile-service': 'v1.8.0',
+  'notification-service': 'v3.2.1',
+  'event-service': 'v2.1.0',
+  'cache-service': 'v4.0.2'
+};
+
+export const deploymentOrder = {
+  'Step 1': 'cache-service (Must go first)',
+  'Step 2': 'user-service (Depends on cache)',
+  'Step 3': 'profile-service (Depends on user)',
+  'Step 4': 'notification-service (Can go anytime)',
+  'Step 5': 'event-service (Must go last)'
+};
+
+export const rollbackComplexity = {
+  'User Service Fails': 'Stop everything',
+  'Profile Service Fails': 'Rollback user-service too',
+  'Notification Fails': 'Continue but alert',
+  'Monitoring Period': '2 hours before success',
+  'Total Time': '3+ hours',
+  'Engineers Required': '5'
+};
+
+export const phase1Consolidation = {
+  'From Services': 'user, profile, preferences, settings, avatar',
+  'To Service': 'customer-service',
+  'Result': '5 services → 1 service'
+};
+
+export const phase2Consolidation = {
+  'From Services': 'product, catalog, inventory, pricing, discount',
+  'To Service': 'commerce-service',
+  'Result': '5 services → 1 service'
+};
+
+export const consolidationSavings = {
+  'Infrastructure': '60% reduction',
+  'Operational': '70% reduction',
+  'Development Time': '50% improvement'
+};
+
 ## Introduction
 
 Microservices were supposed to be the answer to all our architectural problems. Independent deployments, technology diversity, team autonomy, infinite scalability—what could go wrong? As it turns out, quite a lot. In 2025, we're witnessing a remarkable reversal: companies that once bragged about their thousands of microservices are quietly consolidating them. Some are even returning to monoliths, though they're calling them "modular monoliths" to save face.
@@ -38,31 +112,28 @@ Typical Enterprise Journey:
 Real costs from real companies:
 
 **Case Study: E-Commerce Platform**
-export const infrastructureCosts = {
-  'Compute': '$2,400,000',
-  'Networking': '$800,000',
-  'Storage': '$600,000',
-  'Monitoring': '$500,000'
-};
 
-export const developmentCosts = {
-  'Coordination': '$3,200,000',
-  'Debugging': '$2,800,000',
-  'Deployment': '$1,500,000',
-  'Documentation': '$800,000'
-};
+Infrastructure Costs:
+- Compute: $2,400,000
+- Networking: $800,000
+- Storage: $600,000
+- Monitoring: $500,000
 
-export const operationalCosts = {
-  'On-call': '$1,200,000',
-  'Incidents': '$2,000,000',
-  'Security': '$1,500,000'
-};
+Development Costs:
+- Coordination: $3,200,000
+- Debugging: $2,800,000
+- Deployment: $1,500,000
+- Documentation: $800,000
 
-export const costComparison = {
-  'Microservices Total': '$17.3 million/year',
-  'Monolith Equivalent': '$3.2 million/year',
-  'Overhead': '441%'
-};
+Operational Costs:
+- On-call: $1,200,000
+- Incidents: $2,000,000
+- Security: $1,500,000
+
+Cost Comparison:
+- Microservices Total: $17.3 million/year
+- Monolith Equivalent: $3.2 million/year
+- Overhead: 441%
 
 <DataVisualization 
   type="bar" 
@@ -165,35 +236,31 @@ Same bug in monolith: 2 hours
 
 What deploying actually looks like:
 
-export const deploymentComparison = {
-  'Monolith': 'git push && deploy',
-  'Microservices': '3-hour process with 5 engineers'
-};
+**Deployment Comparison:**
+- Monolith: git push && deploy
+- Microservices: 3-hour process with 5 engineers
 
-export const servicesToUpdate = {
-  'user-service': 'v2.3.1',
-  'profile-service': 'v1.8.0',
-  'notification-service': 'v3.2.1',
-  'event-service': 'v2.1.0',
-  'cache-service': 'v4.0.2'
-};
+**Services to Update:**
+- user-service: v2.3.1
+- profile-service: v1.8.0
+- notification-service: v3.2.1
+- event-service: v2.1.0
+- cache-service: v4.0.2
 
-export const deploymentOrder = {
-  'Step 1': 'cache-service (Must go first)',
-  'Step 2': 'user-service (Depends on cache)',
-  'Step 3': 'profile-service (Depends on user)',
-  'Step 4': 'notification-service (Can go anytime)',
-  'Step 5': 'event-service (Must go last)'
-};
+**Deployment Order:**
+- Step 1: cache-service (Must go first)
+- Step 2: user-service (Depends on cache)
+- Step 3: profile-service (Depends on user)
+- Step 4: notification-service (Can go anytime)
+- Step 5: event-service (Must go last)
 
-export const rollbackComplexity = {
-  'User Service Fails': 'Stop everything',
-  'Profile Service Fails': 'Rollback user-service too',
-  'Notification Fails': 'Continue but alert',
-  'Monitoring Period': '2 hours before success',
-  'Total Time': '3+ hours',
-  'Engineers Required': '5'
-};
+**Rollback Complexity:**
+- User Service Fails: Stop everything
+- Profile Service Fails: Rollback user-service too
+- Notification Fails: Continue but alert
+- Monitoring Period: 2 hours before success
+- Total Time: 3+ hours
+- Engineers Required: 5
 
 <DataVisualization 
   type="bar" 
@@ -313,23 +380,21 @@ Industry Reaction: "If Amazon can't make it work..."
 Who's consolidating and why:
 
 **Major Retailer:**
-export const phase1Consolidation = {
-  'From Services': 'user, profile, preferences, settings, avatar',
-  'To Service': 'customer-service',
-  'Result': '5 services → 1 service'
-};
 
-export const phase2Consolidation = {
-  'From Services': 'product, catalog, inventory, pricing, discount',
-  'To Service': 'commerce-service',
-  'Result': '5 services → 1 service'
-};
+**Phase 1 Consolidation:**
+- From Services: user, profile, preferences, settings, avatar
+- To Service: customer-service
+- Result: 5 services → 1 service
 
-export const consolidationSavings = {
-  'Infrastructure': '60% reduction',
-  'Operational': '70% reduction',
-  'Development Time': '50% improvement'
-};
+**Phase 2 Consolidation:**
+- From Services: product, catalog, inventory, pricing, discount
+- To Service: commerce-service
+- Result: 5 services → 1 service
+
+**Consolidation Savings:**
+- Infrastructure: 60% reduction
+- Operational: 70% reduction
+- Development Time: 50% improvement
 
 <DataVisualization 
   type="stats" 
