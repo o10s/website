@@ -1,0 +1,25 @@
+{
+  "name": "my-portfolio",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check",
+    "typecheck": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/prism": "^3.3.0",
+    "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/vite": "^4.1.10",
+    "astro": "^5.9.3",
+    "lucide-astro": "^0.515.0",
+    "tailwindcss": "^4.1.10"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

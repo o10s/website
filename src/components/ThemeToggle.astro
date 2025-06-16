@@ -1,0 +1,63 @@
+---
+import { Sun, Moon } from 'lucide-astro';
+---
+
+<button
+  id="theme-toggle"
+  class="relative p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+  aria-label="Toggle theme"
+>
+  <Sun class="h-5 w-5 block dark:hidden" />
+  <Moon class="h-5 w-5 hidden dark:block" />
+</button>
+
+<script>
+  // This script runs after the DOM is loaded
+  const initThemeToggle = () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    
+    if (!themeToggle) return;
+    
+    const getTheme = () => {
+      return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    };
+
+    const setTheme = (theme: string) => {
+      const root = document.documentElement;
+      if (theme === 'dark') {
+        root.classList.add('dark');
+      } else {
+        root.classList.remove('dark');
+      }
+      localStorage.setItem('theme', theme);
+      
+      // Dispatch a custom event for other components that might need to know
+      window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme } }));
+    };
+    
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = getTheme();
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      setTheme(newTheme);
+    });
+  };
+
+  // Run initialization
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThemeToggle);
+  } else {
+    initThemeToggle();
+  }
+  
+  // Handle theme changes in other tabs
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'theme' && e.newValue) {
+      const root = document.documentElement;
+      if (e.newValue === 'dark') {
+        root.classList.add('dark');
+      } else {
+        root.classList.remove('dark');
+      }
+    }
+  });
+</script>

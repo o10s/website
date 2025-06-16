@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="60" fill="#2563eb" />
+  
+  <!-- Stylized "10" -->
+  <g fill="white">
+    <!-- Number 1 -->
+    <path d="M 35 35 L 45 30 L 48 32 L 48 88 L 56 88 L 56 96 L 28 96 L 28 88 L 36 88 L 36 45 L 30 48 L 28 40 Z" />
+    
+    <!-- Number 0 -->
+    <ellipse cx="75" cy="64" rx="18" ry="26" fill="none" stroke="white" stroke-width="12" />
+  </g>
+  
+  <!-- Subtle gradient overlay for depth -->
+  <defs>
+    <linearGradient id="shine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:white;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:white;stop-opacity:0" />
+    </linearGradient>
+  </defs>
+  
+  <circle cx="64" cy="64" r="59" fill="url(#shine)" />
+</svg>

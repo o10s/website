@@ -1,0 +1,144 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import BlogPostCard from '../components/BlogPostCard.astro';
+import { getCollection } from 'astro:content';
+import { Code2, Cloud, Cog } from 'lucide-astro';
+
+// Get featured projects and latest blog posts
+const projects = await getCollection('projects', ({ data }) => data.featured);
+const blogPosts = await getCollection('blog', ({ data }) => !data.draft);
+
+const featuredProjects = projects
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+
+const latestPosts = blogPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const skills = [
+  {
+    category: 'Backend Development',
+    icon: Code2,
+    items: ['Java', 'Spring Boot', 'PostgreSQL', 'Redis'],
+  },
+  {
+    category: 'DevOps',
+    icon: Cog,
+    items: ['Kubernetes', 'ArgoCD', 'Docker', 'Jenkins', 'Github Actions'],
+  },
+  {
+    category: 'Cloud Platforms',
+    icon: Cloud,
+    items: ['AWS', 'Azure', 'Google Cloud', 'Heroku', 'DigitalOcean'],
+  },
+];
+---
+
+<Layout title="Portfolio - Full Stack Developer">
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <div class="container py-24 md:py-32">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+          Hi, I'm <span class="text-blue-600 dark:text-blue-400">Olivier Alves</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
+          Full Stack Developer specializing in scalable backend systems and cloud infrastructure
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a href="/projects" class="btn btn-primary px-6 py-3">
+            View My Projects
+          </a>
+          <a href="/cv" class="btn btn-secondary px-6 py-3">
+            Download CV
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
+    <div class="container">
+      <h2 class="text-3xl font-bold text-center mb-12">Technical Skills</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        {skills.map((skill) => (
+          <div class="card p-6 hover:shadow-lg transition-shadow">
+            <div class="flex items-center gap-3 mb-4">
+              <skill.icon class="h-6 w-6 text-blue-600 dark:text-blue-400" />
+              <h3 class="text-xl font-semibold">{skill.category}</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              {skill.items.map((item) => (
+                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  <section class="py-16 md:py-24">
+    <div class="container">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Featured Projects</h2>
+        <p class="text-gray-600 dark:text-gray-400">
+          Recent projects showcasing my expertise in full-stack development
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        {featuredProjects.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+      <div class="text-center mt-12">
+        <a href="/projects" class="btn btn-secondary px-6 py-3">
+          View All Projects →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Blog Posts -->
+  <section class="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
+    <div class="container">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Latest Blog Posts</h2>
+        <p class="text-gray-600 dark:text-gray-400">
+          Insights and tutorials on software development and DevOps
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        {latestPosts.map((post) => (
+          <BlogPostCard post={post} />
+        ))}
+      </div>
+      <div class="text-center mt-12">
+        <a href="/blog" class="btn btn-secondary px-6 py-3">
+          Read More Articles →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 md:py-24 bg-blue-600 dark:bg-blue-700">
+    <div class="container text-center">
+      <h2 class="text-3xl font-bold text-white mb-4">
+        Let's Work Together
+      </h2>
+      <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+        I'm always interested in hearing about new projects and opportunities.
+      </p>
+      <a href="mailto:contact@o10s.ch" class="btn bg-white text-blue-600 hover:bg-gray-100 px-6 py-3">
+        Get In Touch
+      </a>
+    </div>
+  </section>
+</Layout>

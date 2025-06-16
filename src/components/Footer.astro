@@ -1,0 +1,40 @@
+---
+import { Github, Linkedin, Mail } from 'lucide-astro';
+
+const socialLinks = [
+  { icon: Github, href: 'https://github.com/o10s', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/olivieralves/', label: 'LinkedIn' },
+  { icon: Mail, href: 'mailto:contact@o10s.ch', label: 'Email' },
+];
+
+---
+
+<footer class="border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950">
+  <div class="container py-12">
+    <div class="max-w-2xl mx-auto text-center">
+      <h3 class="font-bold text-lg mb-4">o10s</h3>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">
+        My corner of the internet where I share my tech journey alongside passions for cooking, manga, and life's various adventures.
+      </p>
+      <div class="flex gap-4 justify-center">
+        {socialLinks.map(({ icon: Icon, href, label }) => (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
+            aria-label={label}
+          >
+            <Icon class="h-5 w-5" />
+          </a>
+        ))}
+      </div>
+    </div>
+    
+    <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800">
+      <p class="text-center text-sm text-gray-600 dark:text-gray-400">
+        &copy; {new Date().getFullYear()} o10s. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>

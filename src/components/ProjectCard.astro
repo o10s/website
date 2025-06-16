@@ -1,0 +1,68 @@
+---
+import { Github, ExternalLink } from 'lucide-astro';
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, description, techStack, githubUrl, demoUrl } = project.data;
+---
+
+<article class="card overflow-hidden hover:shadow-xl transition-shadow">
+  <div class="p-6">
+    <h3 class="text-xl font-bold mb-2 line-clamp-1">{title}</h3>
+    <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
+      {description}
+    </p>
+    
+    <div class="flex flex-wrap gap-2 mb-4">
+      {techStack.slice(0, 4).map((tech) => (
+        <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded">
+          {tech}
+        </span>
+      ))}
+      {techStack.length > 4 && (
+        <span class="text-xs px-2 py-1 text-gray-500 dark:text-gray-400">
+          +{techStack.length - 4} more
+        </span>
+      )}
+    </div>
+    
+    <div class="flex items-center gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+      <a
+        href={`/projects/${project.slug}`}
+        class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+      >
+        Read more →
+      </a>
+      
+      <div class="flex items-center gap-3 ml-auto">
+        {githubUrl && (
+          <a
+            href={githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+            aria-label="View on GitHub"
+          >
+            <Github class="h-4 w-4" />
+          </a>
+        )}
+        
+        {demoUrl && (
+          <a
+            href={demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+            aria-label="View demo"
+          >
+            <ExternalLink class="h-4 w-4" />
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</article>

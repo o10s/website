@@ -1,0 +1,85 @@
+/* Theme Colors - Customize your color palette here */
+
+@theme {
+  /* Primary Colors */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+  --color-primary-950: #172554;
+
+  /* Gray Colors */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  --color-gray-950: #030712;
+
+  /* Success Colors */
+  --color-success-50: #f0fdf4;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+
+  /* Warning Colors */
+  --color-warning-50: #fffbeb;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+
+  /* Error Colors */
+  --color-error-50: #fef2f2;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+}
+
+/* You can also define semantic color aliases */
+@layer base {
+  :root {
+    /* Light mode semantic colors */
+    --background: var(--color-white);
+    --foreground: var(--color-gray-900);
+    --card: var(--color-white);
+    --card-foreground: var(--color-gray-900);
+    --primary: var(--color-primary-600);
+    --primary-foreground: var(--color-white);
+    --secondary: var(--color-gray-200);
+    --secondary-foreground: var(--color-gray-900);
+    --muted: var(--color-gray-100);
+    --muted-foreground: var(--color-gray-600);
+    --accent: var(--color-primary-100);
+    --accent-foreground: var(--color-primary-900);
+    --border: var(--color-gray-200);
+    --input: var(--color-gray-200);
+    --ring: var(--color-primary-600);
+  }
+
+  .dark {
+    /* Dark mode semantic colors */
+    --background: var(--color-gray-900);
+    --foreground: var(--color-gray-100);
+    --card: var(--color-gray-900);
+    --card-foreground: var(--color-gray-100);
+    --primary: var(--color-primary-600);
+    --primary-foreground: var(--color-white);
+    --secondary: var(--color-gray-700);
+    --secondary-foreground: var(--color-gray-100);
+    --muted: var(--color-gray-800);
+    --muted-foreground: var(--color-gray-400);
+    --accent: var(--color-gray-800);
+    --accent-foreground: var(--color-gray-100);
+    --border: var(--color-gray-800);
+    --input: var(--color-gray-800);
+    --ring: var(--color-primary-600);
+  }
+}

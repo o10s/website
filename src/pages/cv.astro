@@ -1,0 +1,204 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Download, Mail, Phone, MapPin, Github, Linkedin } from 'lucide-astro';
+---
+
+<Layout title="CV - Olivier Alves">
+  <div class="container py-16 md:py-24 max-w-4xl">
+    <div class="bg-white dark:bg-gray-900 shadow-lg rounded-lg overflow-hidden print:shadow-none">
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-8 print:bg-white print:text-black">
+        <div class="flex justify-between items-start">
+          <div>
+            <h1 class="text-4xl font-bold mb-2">Olivier Alves</h1>
+            <p class="text-xl opacity-90 print:text-gray-700">Senior Full Stack Developer</p>
+          </div>
+          <button
+            onclick="window.print()"
+            class="btn bg-white/20 hover:bg-white/30 text-white px-4 py-2 print:hidden"
+          >
+            <Download class="h-4 w-4 mr-2 inline" />
+            Download PDF
+          </button>
+        </div>
+      </div>
+      
+      <!-- Contact Information -->
+      <div class="bg-gray-50 dark:bg-gray-800 p-6 print:bg-white">
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="flex items-center gap-2">
+            <Mail class="h-4 w-4 text-gray-600 dark:text-gray-400" />
+            <a href="mailto:olivier.alves@example.com" class="text-blue-600 dark:text-blue-400 hover:underline">
+              olivier.alves@example.com
+            </a>
+          </div>
+          <div class="flex items-center gap-2">
+            <Phone class="h-4 w-4 text-gray-600 dark:text-gray-400" />
+            <span>+1 (555) 123-4567</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <MapPin class="h-4 w-4 text-gray-600 dark:text-gray-400" />
+            <span>San Francisco, CA</span>
+          </div>
+          <div class="flex items-center gap-4">
+            <a href="https://github.com" class="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline">
+              <Github class="h-4 w-4" />
+              <span>github.com/olivieralves</span>
+            </a>
+            <a href="https://linkedin.com" class="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline">
+              <Linkedin class="h-4 w-4" />
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="p-8 space-y-8">
+        <!-- Summary -->
+        <section>
+          <h2 class="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">Professional Summary</h2>
+          <p class="text-gray-700 dark:text-gray-300">
+            Experienced Full Stack Developer with 5+ years of expertise in designing and implementing scalable 
+            web applications and microservices. Proficient in Java, Spring Boot, React, and cloud technologies. 
+            Strong background in DevOps practices, CI/CD pipelines, and container orchestration. Passionate about 
+            writing clean, maintainable code and mentoring junior developers.
+          </p>
+        </section>
+        
+        <!-- Skills -->
+        <section>
+          <h2 class="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">Technical Skills</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <h3 class="font-semibold mb-2">Backend Development</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Java, Spring Boot, Node.js, Python, RESTful APIs, GraphQL, Microservices
+              </p>
+            </div>
+            <div>
+              <h3 class="font-semibold mb-2">Frontend Development</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                React, TypeScript, Next.js, Tailwind CSS, HTML5, CSS3, JavaScript
+              </p>
+            </div>
+            <div>
+              <h3 class="font-semibold mb-2">Databases</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                PostgreSQL, MySQL, MongoDB, Redis, Elasticsearch
+              </p>
+            </div>
+            <div>
+              <h3 class="font-semibold mb-2">DevOps & Cloud</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                AWS, Docker, Kubernetes, Jenkins, Terraform, GitHub Actions
+              </p>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Experience -->
+        <section>
+          <h2 class="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">Professional Experience</h2>
+          
+          <div class="space-y-6">
+            <div>
+              <div class="flex justify-between items-start mb-2">
+                <div>
+                  <h3 class="text-xl font-semibold">Senior Backend Developer</h3>
+                  <p class="text-gray-600 dark:text-gray-400">TechCorp Inc.</p>
+                </div>
+                <span class="text-gray-600 dark:text-gray-400">2021 - Present</span>
+              </div>
+              <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
+                <li>Led the migration of monolithic architecture to microservices, improving scalability by 300%</li>
+                <li>Implemented CI/CD pipelines reducing deployment time from 2 hours to 15 minutes</li>
+                <li>Mentored 5 junior developers and conducted regular code reviews</li>
+                <li>Designed and developed RESTful APIs serving 1M+ daily active users</li>
+              </ul>
+            </div>
+            
+            <div>
+              <div class="flex justify-between items-start mb-2">
+                <div>
+                  <h3 class="text-xl font-semibold">Full Stack Developer</h3>
+                  <p class="text-gray-600 dark:text-gray-400">StartupXYZ</p>
+                </div>
+                <span class="text-gray-600 dark:text-gray-400">2019 - 2021</span>
+              </div>
+              <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
+                <li>Built e-commerce platform from scratch using Spring Boot and React</li>
+                <li>Integrated payment gateways and implemented secure transaction processing</li>
+                <li>Optimized database queries resulting in 50% performance improvement</li>
+                <li>Set up monitoring and alerting systems using Prometheus and Grafana</li>
+              </ul>
+            </div>
+            
+            <div>
+              <div class="flex justify-between items-start mb-2">
+                <div>
+                  <h3 class="text-xl font-semibold">Junior Developer</h3>
+                  <p class="text-gray-600 dark:text-gray-400">Digital Agency Co.</p>
+                </div>
+                <span class="text-gray-600 dark:text-gray-400">2018 - 2019</span>
+              </div>
+              <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
+                <li>Developed responsive web applications for various clients</li>
+                <li>Collaborated with design team to implement pixel-perfect UIs</li>
+                <li>Wrote unit and integration tests achieving 85% code coverage</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Education -->
+        <section>
+          <h2 class="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">Education</h2>
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-xl font-semibold">Bachelor of Science in Computer Science</h3>
+              <p class="text-gray-600 dark:text-gray-400">Stanford University</p>
+            </div>
+            <span class="text-gray-600 dark:text-gray-400">2014 - 2018</span>
+          </div>
+        </section>
+        
+        <!-- Certifications -->
+        <section>
+          <h2 class="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">Certifications</h2>
+          <ul class="space-y-2">
+            <li class="flex justify-between">
+              <span class="text-gray-700 dark:text-gray-300">AWS Certified Solutions Architect - Associate</span>
+              <span class="text-gray-600 dark:text-gray-400">2023</span>
+            </li>
+            <li class="flex justify-between">
+              <span class="text-gray-700 dark:text-gray-300">Certified Kubernetes Administrator (CKA)</span>
+              <span class="text-gray-600 dark:text-gray-400">2022</span>
+            </li>
+            <li class="flex justify-between">
+              <span class="text-gray-700 dark:text-gray-300">Oracle Certified Professional Java SE 11</span>
+              <span class="text-gray-600 dark:text-gray-400">2021</span>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  @media print {
+    @page {
+      margin: 0.5in;
+    }
+    
+    body {
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+    
+    .container {
+      max-width: 100%;
+      padding: 0;
+    }
+  }
+</style>

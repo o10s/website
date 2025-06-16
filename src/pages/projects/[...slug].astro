@@ -1,0 +1,359 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { Github, ExternalLink, ArrowLeft, Tag } from 'lucide-astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: project,
+  }));
+}
+
+type Props = CollectionEntry<'projects'>;
+
+const project = Astro.props;
+const { Content } = await project.render();
+const { title, description, techStack, githubUrl, demoUrl, featured } = project.data;
+---
+
+<Layout title={`${title} - Projects`} description={description}>
+  <article class="container py-16 md:py-24 max-w-4xl">
+    <div class="mb-8">
+      <a
+        href="/projects"
+        class="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+      >
+        <ArrowLeft class="h-4 w-4" />
+        Back to Projects
+      </a>
+    </div>
+    
+    <header class="mb-8">
+      <h1 class="text-4xl font-bold mb-4">{title}</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">
+        {description}
+      </p>
+      
+      <div class="flex flex-wrap items-center gap-4 pb-6 border-b border-gray-200 dark:border-gray-800">
+        {featured && (
+          <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm">
+            Featured Project
+          </span>
+        )}
+        
+        <div class="flex items-center gap-3">
+          {githubUrl && (
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              <Github class="h-4 w-4" />
+              View Source
+            </a>
+          )}
+          
+          {demoUrl && (
+            <a
+              href={demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              <ExternalLink class="h-4 w-4" />
+              Live Demo
+            </a>
+          )}
+        </div>
+      </div>
+      
+      {techStack.length > 0 && (
+        <div class="flex items-center gap-2 mt-4">
+          <Tag class="h-4 w-4 text-gray-500" />
+          <div class="flex flex-wrap gap-2">
+            {techStack.map((tech) => (
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+    </header>
+    
+    <!-- Project Content with Enhanced Markdown Styling -->
+    <div class="project-content">
+      <Content />
+    </div>
+    
+    <footer class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
+      <div class="flex justify-between items-center">
+        <a
+          href="/projects"
+          class="text-blue-600 dark:text-blue-400 hover:underline"
+        >
+          ← Back to all projects
+        </a>
+        <div class="flex items-center gap-4">
+          {githubUrl && (
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+              aria-label="View on GitHub"
+            >
+              <Github class="h-5 w-5" />
+            </a>
+          )}
+          
+          {demoUrl && (
+            <a
+              href={demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+              aria-label="View demo"
+            >
+              <ExternalLink class="h-5 w-5" />
+            </a>
+          )}
+        </div>
+      </div>
+    </footer>
+  </article>
+</Layout>
+
+<style>
+  /* Enhanced Markdown Styling */
+  .project-content {
+    color: rgb(17 24 39);
+  }
+
+  :global(.dark) .project-content {
+    color: rgb(243 244 246);
+  }
+
+  /* Headings */
+  .project-content :global(h1) {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    color: rgb(17 24 39);
+  }
+
+  :global(.dark) .project-content :global(h1) {
+    color: rgb(243 244 246);
+  }
+
+  .project-content :global(h2) {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgb(229 231 235);
+    color: rgb(17 24 39);
+  }
+
+  :global(.dark) .project-content :global(h2) {
+    color: rgb(243 244 246);
+    border-bottom-color: rgb(55 65 81);
+  }
+
+  .project-content :global(h3) {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: rgb(17 24 39);
+  }
+
+  :global(.dark) .project-content :global(h3) {
+    color: rgb(243 244 246);
+  }
+
+  .project-content :global(h4) {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+    color: rgb(17 24 39);
+  }
+
+  :global(.dark) .project-content :global(h4) {
+    color: rgb(243 244 246);
+  }
+
+  /* Paragraphs */
+  .project-content :global(p) {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.75;
+  }
+
+  /* Lists */
+  .project-content :global(ul) {
+    list-style-type: disc;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+    line-height: 1.75;
+  }
+
+  .project-content :global(ol) {
+    list-style-type: decimal;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+    line-height: 1.75;
+  }
+
+  .project-content :global(li) {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-content :global(ul ul),
+  .project-content :global(ul ol),
+  .project-content :global(ol ul),
+  .project-content :global(ol ol) {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Links */
+  .project-content :global(a) {
+    color: rgb(37 99 235);
+    text-decoration: underline;
+    transition: color 0.2s;
+  }
+
+  .project-content :global(a:hover) {
+    color: rgb(29 78 216);
+  }
+
+  :global(.dark) .project-content :global(a) {
+    color: rgb(96 165 250);
+  }
+
+  :global(.dark) .project-content :global(a:hover) {
+    color: rgb(147 197 253);
+  }
+
+  /* Blockquotes */
+  .project-content :global(blockquote) {
+    border-left: 4px solid rgb(229 231 235);
+    padding-left: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    color: rgb(107 114 128);
+  }
+
+  :global(.dark) .project-content :global(blockquote) {
+    border-left-color: rgb(55 65 81);
+    color: rgb(156 163 175);
+  }
+
+  /* Code blocks */
+  .project-content :global(pre) {
+    background-color: rgb(249 250 251);
+    border: 1px solid rgb(229 231 235);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+  }
+
+  :global(.dark) .project-content :global(pre) {
+    background-color: rgb(31 41 55);
+    border-color: rgb(55 65 81);
+  }
+
+  .project-content :global(code) {
+    background-color: rgb(243 244 246);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-family: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  :global(.dark) .project-content :global(code) {
+    background-color: rgb(55 65 81);
+  }
+
+  .project-content :global(pre code) {
+    background-color: transparent;
+    padding: 0;
+    font-size: 0.875rem;
+  }
+
+  /* Tables */
+  .project-content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-content :global(th) {
+    text-align: left;
+    padding: 0.75rem;
+    border-bottom: 2px solid rgb(229 231 235);
+    font-weight: 600;
+  }
+
+  :global(.dark) .project-content :global(th) {
+    border-bottom-color: rgb(55 65 81);
+  }
+
+  .project-content :global(td) {
+    padding: 0.75rem;
+    border-bottom: 1px solid rgb(229 231 235);
+  }
+
+  :global(.dark) .project-content :global(td) {
+    border-bottom-color: rgb(55 65 81);
+  }
+
+  /* Images */
+  .project-content :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Horizontal rules */
+  .project-content :global(hr) {
+    border: none;
+    border-top: 1px solid rgb(229 231 235);
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  :global(.dark) .project-content :global(hr) {
+    border-top-color: rgb(55 65 81);
+  }
+
+  /* Strong and emphasis */
+  .project-content :global(strong) {
+    font-weight: 600;
+    color: rgb(17 24 39);
+  }
+
+  :global(.dark) .project-content :global(strong) {
+    color: rgb(243 244 246);
+  }
+
+  .project-content :global(em) {
+    font-style: italic;
+  }
+</style>

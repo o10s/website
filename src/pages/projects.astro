@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+const sortedProjects = projects.sort((a, b) => {
+  // First sort by featured status
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  // Then by order
+  if (a.data.order !== b.data.order) return a.data.order - b.data.order;
+  // Finally by date
+  return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+});
+---
+
+<Layout title="Projects - Portfolio">
+  <div class="container py-16 md:py-24">
+    <div class="max-w-4xl mx-auto text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4">My Projects</h1>
+      <p class="text-lg text-gray-600 dark:text-gray-400">
+        A collection of my work showcasing various technologies and problem-solving approaches. 
+        Each project represents a unique challenge and learning opportunity.
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {sortedProjects.map((project) => (
+        <ProjectCard project={project} />
+      ))}
+    </div>
+    
+    {sortedProjects.length === 0 && (
+      <div class="text-center py-12">
+        <p class="text-gray-600 dark:text-gray-400">
+          No projects available yet. Check back soon!
+        </p>
+      </div>
+    )}
+  </div>
+</Layout>

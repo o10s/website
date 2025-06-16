@@ -1,0 +1,97 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { MapPin, Briefcase, GraduationCap, Award } from 'lucide-astro';
+---
+
+<Layout title="About Me - Portfolio">
+  <div class="container py-16 md:py-24 max-w-4xl">
+    <h1 class="text-4xl font-bold mb-8">About Me</h1>
+    
+    <div class="prose prose-lg dark:prose-invert max-w-none">
+      <p class="lead">
+        I'm a passionate full-stack developer with a strong focus on building scalable backend systems 
+        and implementing robust DevOps practices. With over 5 years of experience in the industry, 
+        I've worked on various projects ranging from microservices architectures to cloud-native applications.
+      </p>
+      
+      <div class="grid md:grid-cols-2 gap-6 my-8 not-prose">
+        <div class="flex items-start gap-3">
+          <Briefcase class="h-5 w-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0" />
+          <div>
+            <h3 class="font-semibold mb-1">Current Position</h3>
+            <p class="text-gray-600 dark:text-gray-400">Senior Backend Developer at TechCorp</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3">
+          <MapPin class="h-5 w-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0" />
+          <div>
+            <h3 class="font-semibold mb-1">Location</h3>
+            <p class="text-gray-600 dark:text-gray-400">San Francisco, CA</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3">
+          <GraduationCap class="h-5 w-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0" />
+          <div>
+            <h3 class="font-semibold mb-1">Education</h3>
+            <p class="text-gray-600 dark:text-gray-400">B.S. Computer Science, Stanford University</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3">
+          <Award class="h-5 w-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0" />
+          <div>
+            <h3 class="font-semibold mb-1">Certifications</h3>
+            <p class="text-gray-600 dark:text-gray-400">AWS Solutions Architect, CKA</p>
+          </div>
+        </div>
+      </div>
+      
+      <h2>My Journey</h2>
+      <p>
+        My journey in software development began during my university years when I discovered 
+        my passion for solving complex problems through code. What started as simple web 
+        applications quickly evolved into a deep interest in distributed systems and cloud architecture.
+      </p>
+      
+      <h2>What I Do</h2>
+      <p>
+        I specialize in designing and implementing scalable backend services using modern 
+        technologies like Spring Boot, Node.js, and various cloud platforms. My expertise 
+        extends to:
+      </p>
+      
+      <ul>
+        <li>Building microservices architectures that can handle millions of requests</li>
+        <li>Implementing CI/CD pipelines for automated deployment and testing</li>
+        <li>Optimizing database performance and designing efficient data models</li>
+        <li>Setting up monitoring and alerting systems for production applications</li>
+        <li>Mentoring junior developers and conducting code reviews</li>
+      </ul>
+      
+      <h2>Beyond Code</h2>
+      <p>
+        When I'm not coding, you can find me contributing to open-source projects, writing 
+        technical blog posts, or exploring the latest trends in cloud computing and DevOps. 
+        I believe in continuous learning and regularly attend tech conferences and workshops 
+        to stay updated with industry best practices.
+      </p>
+      
+      <h2>Let's Connect</h2>
+      <p>
+        I'm always interested in discussing new projects, innovative ideas, or opportunities 
+        to collaborate. Feel free to reach out through any of the channels listed on this site.
+      </p>
+    </div>
+    
+    <div class="mt-12 flex gap-4">
+      <a href="/contact" class="btn btn-primary px-6 py-3">
+        Get In Touch
+      </a>
+      <a href="/cv" class="btn btn-secondary px-6 py-3">
+        View My CV
+      </a>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,292 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogPostCard from '../../components/BlogPostCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Simple pagination
+const postsPerPage = 6;
+const currentPage = 1;
+const totalPages = Math.ceil(sortedPosts.length / postsPerPage);
+
+---
+
+<Layout title="Blog - Portfolio">
+  <div class="container py-16 md:py-24">
+    <div class="max-w-4xl mx-auto text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4">Blog</h1>
+      <p class="text-lg text-gray-600 dark:text-gray-400">
+        Thoughts, tutorials, and insights on software development, DevOps, and technology trends.
+      </p>
+    </div>
+    
+    <div class="max-w-6xl mx-auto">
+      <!-- Search Bar -->
+      <div class="mb-8">
+        <div class="relative max-w-xl mx-auto">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search by title, content, tags..."
+            class="w-full px-4 py-3 pl-12 text-gray-900 placeholder-gray-500 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 dark:border-gray-700"
+          />
+          <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 text-center" id="search-results-count">
+          Showing all {sortedPosts.length} posts
+        </p>
+      </div>
+      
+      <!-- Blog Posts Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-posts">
+        {sortedPosts.map((post, index) => (
+          <div class="blog-post" 
+               data-index={index}
+               data-search={JSON.stringify({
+                 title: post.data.title.toLowerCase(),
+                 description: post.data.description.toLowerCase(),
+                 tags: post.data.tags.map(tag => tag.toLowerCase()),
+                 content: post.body.toLowerCase().slice(0, 1000) // First 1000 chars for performance
+               })}>
+            <BlogPostCard post={post} />
+          </div>
+        ))}
+      </div>
+      
+      {sortedPosts.length === 0 && (
+        <div class="text-center py-12">
+          <p class="text-gray-600 dark:text-gray-400">
+            No blog posts available yet. Check back soon!
+          </p>
+        </div>
+      )}
+      
+      <!-- Pagination -->
+      {totalPages > 1 && (
+        <div class="mt-12 flex justify-center gap-2" id="pagination">
+          <button id="prev-btn" disabled class="px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-400 cursor-not-allowed">
+            Previous
+          </button>
+          <div class="flex gap-2" id="page-numbers">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <button
+                data-page={page}
+                class={`page-btn px-4 py-2 rounded-md ${
+                  page === currentPage
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+          </div>
+          <button id="next-btn" class="px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700">
+            Next
+          </button>
+        </div>
+      )}
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Pagination and search functionality
+  const postsPerPage = 6;
+  let currentPage = 1;
+  let currentSearchTerm = '';
+  
+  const searchInput = document.getElementById('search-input') as HTMLInputElement;
+  const searchResultsCount = document.getElementById('search-results-count');
+  const allBlogPosts = document.querySelectorAll('.blog-post');
+  const pageButtons = document.querySelectorAll('.page-btn');
+  const prevBtn = document.getElementById('prev-btn') as HTMLButtonElement;
+  const nextBtn = document.getElementById('next-btn') as HTMLButtonElement;
+  const pagination = document.getElementById('pagination');
+  
+  // Convert NodeList to Array for easier manipulation
+  const postsArray = Array.from(allBlogPosts);
+  
+  // Function to get filtered posts based on search term
+  function getFilteredPosts() {
+    if (!currentSearchTerm) {
+      return postsArray;
+    }
+    
+    const searchTerms = currentSearchTerm.toLowerCase().split(' ').filter(term => term.length > 0);
+    
+    return postsArray.filter(post => {
+      const searchData = JSON.parse(post.getAttribute('data-search') || '{}');
+      
+      // Check if all search terms match somewhere in the post data
+      return searchTerms.every(term => {
+        return searchData.title?.includes(term) ||
+               searchData.description?.includes(term) ||
+               searchData.tags?.some((tag: string) => tag.includes(term)) ||
+               searchData.content?.includes(term);
+      });
+    });
+  }
+  
+  // Function to display posts for current page
+  function displayPage() {
+    const filteredPosts = getFilteredPosts();
+    const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+    const startIndex = (currentPage - 1) * postsPerPage;
+    const endIndex = startIndex + postsPerPage;
+    
+    // Update results count
+    if (searchResultsCount) {
+      const totalPosts = postsArray.length;
+      const filteredCount = filteredPosts.length;
+      if (currentSearchTerm) {
+        searchResultsCount.textContent = `Found ${filteredCount} of ${totalPosts} posts`;
+      } else {
+        searchResultsCount.textContent = `Showing all ${totalPosts} posts`;
+      }
+    }
+    
+    // Hide all posts first
+    postsArray.forEach(post => {
+      (post as HTMLElement).style.display = 'none';
+    });
+    
+    // Show only posts for current page
+    filteredPosts.slice(startIndex, endIndex).forEach(post => {
+      (post as HTMLElement).style.display = '';
+    });
+    
+    // Update pagination buttons
+    updatePaginationButtons(totalPages);
+    
+    // Show/hide "no results" message
+    const blogPostsContainer = document.getElementById('blog-posts');
+    if (filteredPosts.length === 0 && blogPostsContainer) {
+      // Check if no results message already exists
+      let noResultsMsg = document.getElementById('no-results-message');
+      if (!noResultsMsg) {
+        noResultsMsg = document.createElement('div');
+        noResultsMsg.id = 'no-results-message';
+        noResultsMsg.className = 'col-span-full text-center py-12';
+        noResultsMsg.innerHTML = `
+          <p class="text-gray-600 dark:text-gray-400 text-lg">
+            No posts found matching "${currentSearchTerm}"
+          </p>
+          <p class="text-gray-500 dark:text-gray-500 text-sm mt-2">
+            Try different keywords or check your spelling
+          </p>
+        `;
+        blogPostsContainer.appendChild(noResultsMsg);
+      }
+    } else {
+      // Remove no results message if it exists
+      const noResultsMsg = document.getElementById('no-results-message');
+      if (noResultsMsg) {
+        noResultsMsg.remove();
+      }
+    }
+  }
+  
+  // Function to update pagination button states
+  function updatePaginationButtons(totalPages: number) {
+    // Update page number buttons
+    pageButtons.forEach(btn => {
+      const page = parseInt(btn.getAttribute('data-page') || '1');
+      if (page === currentPage) {
+        btn.classList.remove('bg-gray-100', 'dark:bg-gray-800');
+        btn.classList.add('bg-blue-600', 'text-white');
+      } else {
+        btn.classList.remove('bg-blue-600', 'text-white');
+        btn.classList.add('bg-gray-100', 'dark:bg-gray-800');
+      }
+    });
+    
+    // Update prev/next buttons
+    if (prevBtn && nextBtn) {
+      if (currentPage === 1) {
+        prevBtn.disabled = true;
+        prevBtn.classList.add('cursor-not-allowed', 'text-gray-400');
+        prevBtn.classList.remove('hover:bg-gray-200', 'dark:hover:bg-gray-700');
+      } else {
+        prevBtn.disabled = false;
+        prevBtn.classList.remove('cursor-not-allowed', 'text-gray-400');
+        prevBtn.classList.add('hover:bg-gray-200', 'dark:hover:bg-gray-700');
+      }
+      
+      if (currentPage === totalPages || totalPages === 0) {
+        nextBtn.disabled = true;
+        nextBtn.classList.add('cursor-not-allowed', 'text-gray-400');
+        nextBtn.classList.remove('hover:bg-gray-200', 'dark:hover:bg-gray-700');
+      } else {
+        nextBtn.disabled = false;
+        nextBtn.classList.remove('cursor-not-allowed', 'text-gray-400');
+        nextBtn.classList.add('hover:bg-gray-200', 'dark:hover:bg-gray-700');
+      }
+    }
+    
+    // Hide pagination if only one page or no posts
+    if (pagination) {
+      pagination.style.display = totalPages <= 1 ? 'none' : 'flex';
+    }
+  }
+  
+  // Search input handler with debounce
+  let searchTimeout: ReturnType<typeof setTimeout>;
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        currentSearchTerm = (e.target as HTMLInputElement).value.trim();
+        currentPage = 1; // Reset to first page when searching
+        displayPage();
+      }, 300); // 300ms debounce
+    });
+    
+    // Handle clearing search
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        searchInput.value = '';
+        currentSearchTerm = '';
+        currentPage = 1;
+        displayPage();
+      }
+    });
+  }
+  
+  // Page number click handlers
+  pageButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      currentPage = parseInt(button.getAttribute('data-page') || '1');
+      displayPage();
+    });
+  });
+  
+  // Previous button click handler
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        displayPage();
+      }
+    });
+  }
+  
+  // Next button click handler
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      const filteredPosts = getFilteredPosts();
+      const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+      if (currentPage < totalPages) {
+        currentPage++;
+        displayPage();
+      }
+    });
+  }
+  
+  // Initial display
+  displayPage();
+</script>
